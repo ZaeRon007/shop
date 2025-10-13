@@ -1,0 +1,26 @@
+<div class="user-login-title">
+    <h2>Demande de contact</h2>
+</div>
+<div class="center">
+    <mat-card class="user-login">
+        <mat-card-content>
+            <form class="user-login-form flex-column">
+                
+                <mat-form-field appearance="outline">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput [(ngModel)]="form.email" name="email">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="message">
+                    <mat-label>Message</mat-label>
+                    <!-- <input matInput [(ngModel)]="form.message" name="message"> -->
+                    <textarea matInput [(ngModel)]="form.message" name="message"></textarea>
+                </mat-form-field>
+
+                <button mat-flat-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!isFormValid()">
+                    Envoyer
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

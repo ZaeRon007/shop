@@ -1,0 +1,62 @@
+.user-login-title {
+    display: grid;
+
+    h2 {
+        justify-self: center;
+    }
+
+    mat-icon {
+        margin-right: 1rem;
+    }
+
+    .centerLogo {
+        justify-self: center;
+        height: 160px;
+        width: 250px;
+        margin-bottom: -20px;
+    }
+}
+
+
+.center {
+    .user-login {
+        background-color: white;
+        justify-self: center;
+        width: 30%;
+
+        .user-login-form {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+
+
+            ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+                color: black;
+
+            }
+
+            button.mat-flat-button {
+                display: flex;
+                justify-self: center;
+                justify-content: center;
+                width: 50%;
+                align-items: center;
+                min-width: 126px;
+            }
+
+            .flex-column {
+                display: grid;
+            }
+
+            textarea {
+                height: 250px;
+            }
+
+            .mat-mdc-form-field {
+                width: 350px;
+            }
+
+        }
+    }
+
+}

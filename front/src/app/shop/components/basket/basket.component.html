@@ -1,0 +1,52 @@
+<div class="centerDiv">
+    <h1>Liste des produits présent dans le panier</h1>
+
+    <div class="list gap">
+        <ng-container *ngIf="productsWithQuantities$ | async as products">
+
+            <mat-card *ngFor="let product of products">
+                <div *ngIf="product.quantityInBasket > 0" class="card row">
+
+                    <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
+                    <mat-card-title>
+                        <h3 class="center">{{product.name}}</h3>
+                </mat-card-title>
+                <mat-card-content>
+                    <div class="row smallGap center">
+                        <div class="row">
+                            <p>{{product.inventoryStatus}}</p>
+                            <mat-icon *ngIf="product.inventoryStatus === 'INSTOCK'"
+                            class="green">check_circle</mat-icon>
+                            <mat-icon *ngIf="product.inventoryStatus === 'OUTOFSTOCK'" class="red">error</mat-icon>
+                            <mat-icon *ngIf="product.inventoryStatus === 'LOWSTOCK'" class="orange">warning</mat-icon>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <p>Qty:</p>
+                        <button mat-flat-button class="smallButton" (click)="decrease(product.id, product.quantityInBasket)">
+                            <mat-icon class="marginAuto">remove</mat-icon>
+                        </button>
+                        <p>{{product.quantityInBasket}}</p>
+                        <button mat-flat-button class="smallButton" (click)="increase(product.id, product.quantityInBasket)">
+                            <mat-icon class="marginAuto">add</mat-icon>
+                        </button>
+                        <p>{{product.price}}</p>
+                        <mat-icon>euro_symbol</mat-icon>
+                    </div>
+                    
+                    
+                </mat-card-content>
+                <mat-icon class="red" (click)="deleteFrombasket(product.id)">cancel</mat-icon>
+            </div>
+            </mat-card>
+            <!-- <div class="row">
+                <mat-divider></mat-divider>
+                <h2>Total :</h2>
+                <p>1000
+                    <mat-icon class="marginVertical">euro_symbol</mat-icon>
+                </p>
+            </div> -->
+        </ng-container>
+
+    </div>
+</div>
