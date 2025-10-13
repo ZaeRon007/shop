@@ -1,11 +1,16 @@
 .title {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding-top: 15%;
-    font-size: 2rem;
-}
+    font-size: medium;
 
-.gap {
-    margin: 15px;
+    .gap {
+        margin: 15px;
+    }
+
+    button {
+        font-size: medium;
+    }
 }
