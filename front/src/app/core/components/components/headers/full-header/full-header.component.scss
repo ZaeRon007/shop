@@ -1,0 +1,22 @@
+.simple-header {
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        img, button, div, a {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        p {
+            margin: auto;
+        }
+
+        .gap {
+            gap: 10px;
+            margin-right: 15px;
+        }
+        
+    }
+}

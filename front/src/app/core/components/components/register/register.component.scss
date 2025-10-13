@@ -1,0 +1,71 @@
+.user-register-title {
+    display: grid;
+
+    h2 {
+        justify-self: center;
+    }
+
+    mat-icon {
+        margin-right: 1rem;
+    }
+
+    // .centerLogo {
+    //     justify-self: center;
+    //     height: 160px;
+    //     width: 250px;
+    //     margin-bottom: -20px;
+    // }
+
+}
+
+.center {
+    display: unset;
+
+    .user-register {
+        background-color: white;
+        justify-self: center;
+        width: 25%;
+
+        .user-register-form {
+            align-items: center;
+
+            mat-form-field {
+                display: flex;
+            }
+
+            ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+                color: black;
+
+            }
+
+            button {
+                display: flex;
+                justify-self: center;
+            }
+
+            .flex-column {
+                display: grid;
+            }
+
+            .error {
+                display: flex;
+                justify-content: center;
+                color: red;
+                width: 250px;
+                margin-top: -10px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .user-register-title .centerLogo {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    app-simple-header {
+        display: none;
+    }
+}
