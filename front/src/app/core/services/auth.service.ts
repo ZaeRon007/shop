@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { authRequest } from "../models/auth.interface";
 import { loginRequest } from "../models/dto/loginRequest.interface";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -70,7 +71,7 @@ export class AuthService {
      */
     registerUser(user: authRequest): Observable<authRequest> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post<authRequest>(`auth/register`, user, { headers });
+        return this.http.post<authRequest>(`${environment.apiUrl}auth/register`, user, { headers });
     }
 
     /**
@@ -80,6 +81,6 @@ export class AuthService {
      */
     loginUser(user: loginRequest): Observable<authRequest> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post<authRequest>(`auth/login`, user, { headers });
+        return this.http.post<authRequest>(`${environment.apiUrl}auth/login`, user, { headers });
     }
 }

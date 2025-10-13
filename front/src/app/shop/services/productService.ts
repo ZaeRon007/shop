@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { productEntity } from "../../core/models/productEntity";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,7 @@ export class ProductService {
     }
 
     public getAllProducts(): Observable<productEntity[]> {
-        return this.http.get<productEntity[]>(`products`);
+        return this.http.get<productEntity[]>(`${environment.apiUrl}products`);
     }
     
 }

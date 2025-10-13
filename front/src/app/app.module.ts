@@ -18,7 +18,6 @@ import { ShopModule } from './shop/shop.module';
     ShopModule
   ],
   providers: [
-    provideHttpClient(),
     provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent]

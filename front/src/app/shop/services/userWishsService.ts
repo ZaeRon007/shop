@@ -2,6 +2,7 @@ import { Injectable, OnDestroy } from "@angular/core";
 import { BehaviorSubject, Observable, Subscription, take, tap } from "rxjs";
 import { userWishsEntity } from "../../core/models/userWishsEntity";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserWishsService implements OnDestroy {
     }
 
     public getUserWishs(): Observable<userWishsEntity[]> {
-        return this.http.get<userWishsEntity[]>(`shop/wishs`).pipe(
+        return this.http.get<userWishsEntity[]>(`${environment.apiUrl}shop/wishs`).pipe(
             tap((wish: userWishsEntity[]) => {
                 this.whishs$.next(wish)
             })
@@ -35,7 +36,7 @@ export class UserWishsService implements OnDestroy {
     }
 
     public postToWishs(product_id: number): void {
-        this.sub = this.http.post(`shop/wishs/${product_id}`, null).subscribe();
+        this.sub = this.http.post(`${environment.apiUrl}shop/wishs/${product_id}`, null).subscribe();
     }
 
     public removeFromWishs(id: number) {
@@ -45,7 +46,7 @@ export class UserWishsService implements OnDestroy {
     }
 
     public deleteFromWishs(product_id: number): void {
-        this.sub1 = this.http.delete(`shop/wishs/${product_id}`).subscribe();
+        this.sub1 = this.http.delete(`${environment.apiUrl}shop/wishs/${product_id}`).subscribe();
     }
 
     ngOnDestroy(): void {

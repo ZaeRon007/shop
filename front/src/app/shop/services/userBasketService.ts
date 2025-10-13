@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
 import { userBasketEntity } from "../../core/models/userBasketEntity";
 import { userBasketAddDto } from "../../core/models/dto/userBasketAddDto";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +28,7 @@ export class UserBasketService implements OnDestroy {
     }
 
     public getUserBasket(): Observable<userBasketEntity[]> {
-        return this.http.get<userBasketEntity[]>(`shop/basket`).pipe(
+        return this.http.get<userBasketEntity[]>(`${environment.apiUrl}shop/basket`).pipe(
             tap((product: userBasketEntity[]) => {
                 this.basket$.next(product)
             })
@@ -85,11 +86,11 @@ export class UserBasketService implements OnDestroy {
     }
 
     public addToBasket(product_id: number, productToAdd: userBasketAddDto): void {
-        this.sub = this.http.post<userBasketAddDto>(`shop/basket/${product_id}`, productToAdd).subscribe();
+        this.sub = this.http.post<userBasketAddDto>(`${environment.apiUrl}shop/basket/${product_id}`, productToAdd).subscribe();
     }
 
     public patchFrombasket(product_id: number, productToAdd: userBasketAddDto): void {
-        this.sub1 = this.http.patch<userBasketAddDto>(`shop/basket/${product_id}`, productToAdd).subscribe();
+        this.sub1 = this.http.patch<userBasketAddDto>(`${environment.apiUrl}shop/basket/${product_id}`, productToAdd).subscribe();
     }
 
     public removeFromBasket(id: number) {
@@ -99,11 +100,11 @@ export class UserBasketService implements OnDestroy {
     }
 
     public deleteFromBasket(product_id: number): void {
-        this.sub2 = this.http.delete(`shop/basket/${product_id}`).subscribe();
+        this.sub2 = this.http.delete(`${environment.apiUrl}shop/basket/${product_id}`).subscribe();
     }
 
     public getItemAmountInUserBasket(product_id: number) {
-        return this.http.get<userBasketAddDto>(`shop/basket${product_id}`);
+        return this.http.get<userBasketAddDto>(`${environment.apiUrl}shop/basket${product_id}`);
     }
 
 }

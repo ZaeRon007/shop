@@ -1,0 +1,42 @@
+.full-header {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    .size {
+        width: 100%;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+
+        h1 {
+            margin-left: 5px;
+        }
+
+        mat-icon {
+            scale: 1.5;
+        }
+
+        img, button, div, a {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .gap {
+            gap: 10px;
+            margin-right: 15px;
+        }
+
+        .align-right1 {
+            margin-left: 50%;
+        }
+
+        .align-right2 {
+            margin-left: 25%;
+        }
+        
+    }
+}

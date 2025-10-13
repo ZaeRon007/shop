@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { map, Observable, Subscription } from 'rxjs';
-import { MenuService } from '../../../../../shop/services/menuService';
-import { UserBasketService } from '../../../../../shop/services/userBasketService';
-import { UserWishsService } from '../../../../../shop/services/userWishsService';
+import { MenuService } from '../../../../shop/services/menuService';
+import { UserBasketService } from '../../../../shop/services/userBasketService';
+import { UserWishsService } from '../../../../shop/services/userWishsService';
 
 @Component({
   selector: 'app-full-header',

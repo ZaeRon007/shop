@@ -2,6 +2,7 @@ import { Injectable, OnDestroy, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { usernameDto } from "../../core/models/dto/usernameDto";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class userService implements OnDestroy{
     }
 
     private getUsername(): Observable<usernameDto> {
-        return this.http.get<usernameDto>(`shop/basket/me`);
+        return this.http.get<usernameDto>(`${environment.apiUrl}shop/basket/me`);
     }
 
     private checkAdmin(): void{

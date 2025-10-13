@@ -1,11 +1,14 @@
-<div class="simple-header">
-    <div class="row">
-        <a [routerLink]="['/shop/home']">
-            <img src="/assets/icons/icon-72x72.png" alt="angular logo">
-        </a>
-        <p>SHOP</p>
-        
-        <div class="row gap">
+<div class="full-header">
+    <div class="row size">
+
+        <div class="align-right1 row">
+            <a [routerLink]="['/shop/home']">
+                <mat-icon>store</mat-icon>
+            </a>
+            <h1>SHOP</h1>
+        </div>
+
+        <div class="align-right2 row gap">
             <button mat-flat-button color="primary" (click)="logOut()">se déconnecter</button>
             <a [routerLink]="['/shop/wishs']">
                 <mat-icon [matBadge]="wishCount$ | async">featured_play_list</mat-icon>
@@ -14,7 +17,5 @@
                 <mat-icon [matBadge]="cartSize$ | async" (click)="cartMenu()">shopping_cart</mat-icon>
             </a>
         </div>
-
     </div>
-    <mat-divider></mat-divider>
 </div>
