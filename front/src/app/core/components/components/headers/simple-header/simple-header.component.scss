@@ -2,10 +2,15 @@
     .row {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
 
-        p {
-            margin: auto;
+        h1 {
+            margin-left: 5px;
+        }
+
+        mat-icon {
+            scale: 1.5;
         }
     }
 }
