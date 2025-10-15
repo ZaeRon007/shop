@@ -11,10 +11,10 @@
         <div class="align-right2 row gap">
             <button mat-flat-button color="primary" (click)="logOut()">se déconnecter</button>
             <a [routerLink]="['/shop/wishs']">
-                <mat-icon [matBadge]="wishCount$ | async">featured_play_list</mat-icon>
+                <mat-icon [matBadge]="wishCount$ | async" aria-hidden="false">featured_play_list</mat-icon>
             </a>
             <a [routerLink]="['/shop/basket']">
-                <mat-icon [matBadge]="cartSize$ | async" (click)="cartMenu()">shopping_cart</mat-icon>
+                <mat-icon [matBadge]="cartSize$ | async" aria-hidden="false" (click)="cartMenu()">shopping_cart</mat-icon>
             </a>
         </div>
     </div>
