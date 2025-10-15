@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { map, Observable, Subscription } from 'rxjs';
-import { MenuService } from '../../../../shop/services/menuService';
 import { UserBasketService } from '../../../../shop/services/userBasketService';
 import { UserWishsService } from '../../../../shop/services/userWishsService';
 
@@ -18,8 +17,7 @@ export class FullHeaderComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
     private wishsService: UserWishsService,
-    private basketService: UserBasketService,
-    public menu: MenuService) {
+    private basketService: UserBasketService) {
 
   }
 
@@ -42,9 +40,4 @@ export class FullHeaderComponent implements OnInit, OnDestroy {
   logOut() {
     this.authService.logOut();
   }
-
-  cartMenu() {
-    this.menu.setMenuIndex(3);
-  }
-
 }

@@ -5,13 +5,15 @@ import { BasketComponent } from "./components/basket/basket.component";
 import { WishComponent } from "./components/wish/wish.component";
 import { ContactComponent } from "./components/contact/contact.component";
 import { HomeComponent } from "./components/home/home.component";
+import { AccountComponent } from "./components/account/account.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'products', component: ProductsComponent},
   { path: 'basket', component: BasketComponent},
   { path: 'wish', component: WishComponent},
-  { path: 'contact', component: ContactComponent}
+  { path: 'contact', component: ContactComponent},
+  { path: 'account', component: AccountComponent}
 
 ]
 
