@@ -1,19 +1,12 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { HttpInterceptorFn } from "@angular/common/http";
+import { inject } from "@angular/core";
 import { AuthService } from "../services/auth.service";
 
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-
-    constructor(private authService: AuthService){
-
-    }
-
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
         console.log('[AuthInterceptor] intercepted:', req.url);
 
-        const authenticationToken = this.authService.getToken();
+        const authService = inject(AuthService)
+        const authenticationToken = authService.getToken();
 
         if(authenticationToken){
     
@@ -22,8 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     Authorization: `Bearer ${authenticationToken}`,
                 },
             });        
-            return next.handle(modifiedReq);
+            return next(modifiedReq);
         }
-        return next.handle(req);
-    }
+        return next(req);
 }

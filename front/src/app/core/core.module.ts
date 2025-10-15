@@ -15,8 +15,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { AuthGuard } from "./guards/auth.guard";
 import { UnAuthGuard } from "./guards/unauth.guard";
-import { HttpInterceptorProviders } from "./interceptors";
-import { provideHttpClient } from "@angular/common/http";
+import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { AuthComponent } from "./components/auth/auth.component";
 import { FullHeaderComponent } from "./components/headers/full-header/full-header.component";
 import { SimpleHeaderComponent } from "./components/headers/simple-header/simple-header.component";
@@ -24,6 +23,7 @@ import { LandingPageComponent } from "./components/landing-page/landing-page.com
 import { LogInComponent } from "./components/log-in/log-in.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { RegisterComponent } from "./components/register/register.component";
+import { AuthInterceptor } from "./interceptors/auth.interceptor";
 
 @NgModule({
     declarations: [
@@ -52,7 +52,7 @@ import { RegisterComponent } from "./components/register/register.component";
         MatBadgeModule,
     ],
     exports: [
-        CommonModule,        
+        CommonModule,
         AuthComponent,
         LandingPageComponent,
         LogInComponent,
@@ -76,9 +76,7 @@ import { RegisterComponent } from "./components/register/register.component";
         { provide: LOCALE_ID, useValue: 'fr-FR' },
         AuthGuard,
         UnAuthGuard,
-        ...HttpInterceptorProviders,
-        provideHttpClient(),
+        provideHttpClient(withInterceptors([AuthInterceptor])),
     ],
   })
   export class CoreModule { }
-  
