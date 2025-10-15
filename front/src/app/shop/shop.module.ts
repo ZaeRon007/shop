@@ -6,6 +6,8 @@ import { ContainerComponent } from "./components/container/container.component";
 import { HomeComponent } from "./components/home/home.component";
 import { ProductsComponent } from "./components/products/products.component";
 import { CoreModule } from "../core/core.module";
+import { WishComponent } from './components/wish/wish.component';
+import { AccountComponent } from './components/account/account.component';
 
 @NgModule({
     declarations: [
@@ -14,6 +16,8 @@ import { CoreModule } from "../core/core.module";
         ContainerComponent,
         ContactComponent,
         BasketComponent,
+        WishComponent,
+        AccountComponent,
     ],
     imports: [
         ShopRoutingModule,
