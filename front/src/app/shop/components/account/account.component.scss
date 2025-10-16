@@ -1,0 +1,14 @@
+.main-account-div {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+
+    button {
+        max-width: 150px;
+    }
+    
+    .buttons-cfg {
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,1 +1,39 @@
-<p>account works!</p>
+<app-full-header></app-full-header>
+<mat-grid-list cols="10">
+  <!-- first block -->
+  <mat-grid-tile colspan="1" class="app-side-nav">
+    <app-side-nav></app-side-nav>
+  </mat-grid-tile>
+
+  <!-- second block -->
+  <mat-grid-tile colspan="9">
+    <div class="main-account-div">
+      <h1>Informations personnelles</h1>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Firstname</mat-label>
+        <input matInput [(ngModel)]="user.firstname" name="firstname">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput [(ngModel)]="user.username" name="username">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input matInput [(ngModel)]="user.email" name="email">
+      </mat-form-field>
+
+      <div class="buttons-cfg">
+        <button mat-flat-button color="primary" type="submit" (click)="putUserInfos()" [disabled]="!isFormValid()">
+          Sauvegarder
+        </button>
+  
+        <button mat-flat-button (click)="logOut()">
+          Se déconnecter
+        </button>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
