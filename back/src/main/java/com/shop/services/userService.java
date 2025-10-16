@@ -116,4 +116,13 @@ public class userService {
             System.out.println("can't find user in database\n");
         return (userRepository.findByEmail(username)).toUserInfosDto();
     }
+
+    public userInfosDto putUserInfos(userInfosDto user) {
+        userEntity userToAdd = userRepository.findById(user.getId());
+        userToAdd.setEmail(user.getEmail());
+        userToAdd.setUsername(user.getUsername());
+        userToAdd.setFirstname(user.getFirstname());
+
+        return userRepository.save(userToAdd).toUserInfosDto();
+    }
 }

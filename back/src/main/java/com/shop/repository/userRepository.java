@@ -9,4 +9,5 @@ import com.shop.model.userEntity;
 public interface userRepository extends CrudRepository<userEntity, Integer> {
     boolean existsByEmail(String email);
     userEntity findByEmail(String email);
+    userEntity findById(int id);
 }
