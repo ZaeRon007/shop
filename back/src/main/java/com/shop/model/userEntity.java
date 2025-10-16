@@ -1,5 +1,7 @@
 package com.shop.model;
 
+import com.shop.model.dto.userInfosDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,5 +46,13 @@ public class userEntity {
         this.firstname = firstname;
         this.email = email;
         this.createdAt = createdAt;
+    }
+
+    public userInfosDto toUserInfosDto(){
+        userInfosDto res = new userInfosDto();
+        res.setEmail(getEmail());
+        res.setUsername(getUsername());
+        res.setFirstname(getFirstname());
+        return res;
     }
 }

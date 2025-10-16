@@ -2,11 +2,13 @@ package com.shop.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shop.model.dto.userInfosDto;
 import com.shop.model.dto.userLogInDto;
 import com.shop.model.dto.userRegisterDto;
 import com.shop.model.response.simpleToken;
@@ -37,5 +39,14 @@ public class userController {
             return ResponseEntity.badRequest().body("email or password is invalid !!");
 
         return ResponseEntity.ok().body(new simpleToken(token));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> getMe(){
+        userInfosDto userInfosDto = userService.getUserInfos();
+
+        if(userInfosDto.getEmail().isEmpty())
+            return ResponseEntity.badRequest().body("something went wrong with database");
+        return ResponseEntity.ok().body(userInfosDto);
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.model.userEntity;
+import com.shop.model.dto.userInfosDto;
 import com.shop.model.dto.userLogInDto;
 import com.shop.model.dto.userRegisterDto;
 import com.shop.repository.userRepository;
@@ -103,5 +104,16 @@ public class userService {
      */
     public boolean canActivate(){
         return getUsername().equals("admin@admin.com");
+    }
+
+    /**
+     * Fonction permettant d'obtenir des informations utilisateurs
+     * @return userInfosDto : username + firstname + email
+     */
+    public userInfosDto getUserInfos() {
+        String username = getUsername();
+        if(username.isEmpty())
+            System.out.println("can't find user in database\n");
+        return (userRepository.findByEmail(username)).toUserInfosDto();
     }
 }
