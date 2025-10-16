@@ -1,84 +1,60 @@
-.overflow-y {
+.column {
+    display: flex;
+    justify-content: center;
     overflow-y: auto;
-    
-    .centerDiv {
+
+    ::ng-deep .mat-grid-tile-content {
+        justify-content: unset;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        
-        
-        mat-grid-tile {
-          background: lightblue;
-        }
-    
-        mat-card {
-            margin-top: 30px;
-        }
-    
-        .mat-mdc-card-title {
-            margin-top: -40px;
-        }
-    
-        .gridlist {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-    
+    }
+
+
+    .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-self: flex-start;
+        margin-top: 10px;
+    }
+
+    .card {
+        width: 300px;
+        height: auto;
+
         .align_right {
             align-self: flex-end;
             margin-top: 5px;
             margin-right: 5px;
-            
+
         }
-    
-        .gap {
-            gap: 1rem;
-        }
-    
-        .smallGap {
-            gap: 10px;
-        }
-    
-        .card {
-            width: 300px;
-            height: auto;
-        }
-    
-        .row {
-            display: flex;
-            flex-direction: row;
-            gap: 5px;
-        }
-    
+
+
+        
+
         .center {
             display: flex;
             justify-content: center;
         }
-    
-        mat-icon, .marginVertical {
-            margin-top: auto;
-            margin-bottom: auto;
-            z-index: 1;
-        }
-    
-        .marginAuto {
-            margin: auto;
-        }
-    
+
         .justify-text {
             text-align: justify;
             padding-left: 10px;
             padding-right: 10px;
         }
-    
-        img {
-            height: 275px;
-            width: 275px;
-            margin-right: auto;
-            margin-left: auto;
+
+        .smallGap {
+            gap: 10px;
         }
-    
+
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+
         .smallButton {
             height: 20px;
             width: 20px;
@@ -88,31 +64,63 @@
             justify-content: center;
             margin-top: auto;
             margin-bottom: auto;
+
+            .mdc-button {
+                min-width: 0;
+            }
+
         }
-        
-        .mdc-button {
-            min-width: 0;
+
+        .marginAuto {
+            margin: auto;
         }
-    
-        .green {
-            color: green;
+
+        mat-icon,
+        .marginVertical {
+            margin-top: auto;
+            margin-bottom: auto;
+            z-index: 1;
         }
-        .red {
-            color: red;
-        }
-        .orange {
-            color: orange;
-        }
-        .yellow {
-            color: rgb(255, 196, 0);
-        }
-    
-        .like {
-            color: pink;
-        }
-    
+
         .lightGrey {
             color: lightgrey;
         }
+
+        .like {
+            color: pink;
+        }
+
+        .yellow {
+            color: rgb(255, 196, 0);
+        }
+
+        .green {
+            color: green;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .orange {
+            color: orange;
+        }
+
+        mat-grid-tile {
+            background: lightblue;
+        }
+
+        img {
+            height: 275px;
+            width: 275px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        // ng-container {
+        //     display: flex;
+        //     flex-wrap: wrap;
+        //     justify-content: center;
+        // }
     }
 }
