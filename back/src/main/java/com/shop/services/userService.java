@@ -108,7 +108,7 @@ public class userService {
 
     /**
      * Fonction permettant d'obtenir des informations utilisateurs
-     * @return userInfosDto : username + firstname + email
+     * @return userInfosDto : id + username + firstname + email
      */
     public userInfosDto getUserInfos() {
         String username = getUsername();
