@@ -3,7 +3,19 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+h1,h2,
+button,
+.mat-icon {
+    color: rgb(37, 28, 168);
+}
 
-.app-side-nav {
-    background-color: cadetblue;
+app-side-nav {
+    width: 100%;
+    border-right: 1px solid black;
+}
+
+mat-grid-list,
+app-side-nav,
+mat-grid-tile {
+    height: 100%;
 }
