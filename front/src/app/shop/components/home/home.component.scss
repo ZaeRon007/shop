@@ -1,4 +1,9 @@
-h1, p {
+.column {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+
+    h1, p {
+        display: flex;
+        justify-content: center;
+    }
 }
