@@ -50,9 +50,10 @@ public class userEntity {
 
     public userInfosDto toUserInfosDto(){
         userInfosDto res = new userInfosDto();
-        res.setEmail(getEmail());
-        res.setUsername(getUsername());
-        res.setFirstname(getFirstname());
+        res.setId(id);
+        res.setEmail(email);
+        res.setUsername(username);
+        res.setFirstname(firstname);
         return res;
     }
 }
