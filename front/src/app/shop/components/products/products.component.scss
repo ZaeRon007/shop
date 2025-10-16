@@ -1,113 +1,118 @@
-.centerDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.overflow-y {
+    overflow-y: auto;
     
-    mat-grid-tile {
-      background: lightblue;
-    }
-
-    mat-card {
-        margin-top: 30px;
-    }
-
-    .mat-mdc-card-title {
-        margin-top: -40px;
-    }
-
-    .gridlist {
+    .centerDiv {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .align_right {
-        align-self: flex-end;
-        margin-top: 5px;
-        margin-right: 5px;
-        
-    }
-
-    .gap {
-        gap: 1rem;
-    }
-
-    .smallGap {
-        gap: 10px;
-    }
-
-    .card {
-        width: 300px;
-        height: auto;
-    }
-
-    .row {
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-    }
-
-    .center {
-        display: flex;
-        justify-content: center;
-    }
-
-    mat-icon, .marginVertical {
-        margin-top: auto;
-        margin-bottom: auto;
-        z-index: 1;
-    }
-
-    .marginAuto {
-        margin: auto;
-    }
-
-    .justify-text {
-        text-align: justify;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    img {
-        height: 275px;
-        width: 275px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    .smallButton {
-        height: 20px;
-        width: 20px;
-        padding: 0;
-        border-radius: 0;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
+        
+        
+        mat-grid-tile {
+          background: lightblue;
+        }
     
-    .mdc-button {
-        min-width: 0;
-    }
-
-    .green {
-        color: green;
-    }
-    .red {
-        color: red;
-    }
-    .orange {
-        color: orange;
-    }
-    .yellow {
-        color: rgb(255, 196, 0);
-    }
-
-    .like {
-        color: pink;
-    }
-
-    .lightGrey {
-        color: lightgrey;
+        mat-card {
+            margin-top: 30px;
+        }
+    
+        .mat-mdc-card-title {
+            margin-top: -40px;
+        }
+    
+        .gridlist {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    
+        .align_right {
+            align-self: flex-end;
+            margin-top: 5px;
+            margin-right: 5px;
+            
+        }
+    
+        .gap {
+            gap: 1rem;
+        }
+    
+        .smallGap {
+            gap: 10px;
+        }
+    
+        .card {
+            width: 300px;
+            height: auto;
+        }
+    
+        .row {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+    
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+    
+        mat-icon, .marginVertical {
+            margin-top: auto;
+            margin-bottom: auto;
+            z-index: 1;
+        }
+    
+        .marginAuto {
+            margin: auto;
+        }
+    
+        .justify-text {
+            text-align: justify;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    
+        img {
+            height: 275px;
+            width: 275px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    
+        .smallButton {
+            height: 20px;
+            width: 20px;
+            padding: 0;
+            border-radius: 0;
+            align-items: center;
+            justify-content: center;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        
+        .mdc-button {
+            min-width: 0;
+        }
+    
+        .green {
+            color: green;
+        }
+        .red {
+            color: red;
+        }
+        .orange {
+            color: orange;
+        }
+        .yellow {
+            color: rgb(255, 196, 0);
+        }
+    
+        .like {
+            color: pink;
+        }
+    
+        .lightGrey {
+            color: lightgrey;
+        }
     }
 }
