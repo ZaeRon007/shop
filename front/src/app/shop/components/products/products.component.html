@@ -45,24 +45,23 @@
                         </div>
                         <div class="row center" *ngIf="product.quantityInBasket > 0;else singleButton">
                             <p>Qty:</p>
-                            <button mat-flat-button class="smallButton"
+                            <button mat-icon-button class="smallButton"
                                 (click)="decreaseAmount(product.id, product.quantityInBasket)">
                                 <mat-icon class="marginAuto">remove</mat-icon>
                             </button>
                             <p>{{product.quantityInBasket}}</p>
-                            <button mat-flat-button class="smallButton"
+                            <button mat-icon-button class="smallButton"
                                 (click)="increaseAmount(product.id, product.quantityInBasket)">
                                 <mat-icon class="marginAuto">add</mat-icon>
                             </button>
                             <p>{{product.price}}</p>
                             <mat-icon>euro_symbol</mat-icon>
-                            <button mat-flat-button class="marginVertical"
-                                (click)="addToCart(product.id, product.quantityInBasket)">Acheter</button>
                         </div>
-                        <ng-template #singleButton>
+                        <ng-template #singleButton >
                             <div class="row center">
                                 <button mat-flat-button class="marginVertical"
-                                    (click)="addToCart(product.id, 1)">Acheter</button>
+                                    (click)="addToCart(product.id, 1)"
+                                    [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">Acheter</button>
                             </div>
                         </ng-template>
                     </mat-card-content>
