@@ -1,12 +1,39 @@
 <app-full-header></app-full-header>
 <mat-grid-list cols="10">
     <!-- first block -->
-     <mat-grid-tile colspan="1" class="app-side-nav">
-             <app-side-nav></app-side-nav>
-     </mat-grid-tile>
+    <mat-grid-tile colspan="1" class="app-side-nav">
+        <app-side-nav></app-side-nav>
+    </mat-grid-tile>
 
-     <!-- second block -->
-      <mat-grid-tile colspan="9">
-          <p>wish works!</p>
-      </mat-grid-tile>
+    <!-- second block -->
+    <mat-grid-tile colspan="9" *ngIf="(wishsTab$ | async) as products">
+        <div class="centerDiv" *ngIf="wishsLength > 0;else singleWarning">
+
+            <h1>Liste des produits présent dans votre liste d'envie</h1>
+
+            <div class="list gap">
+                <ng-container>
+
+                    <mat-card *ngFor="let product of products">
+                        <div class="card row">
+
+                            <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
+                            <mat-card-title>
+                                <h3 class="center">{{product.name}}</h3>
+                            </mat-card-title>
+                            <mat-card-content>
+                                <mat-icon class="red" (click)="deleteFromWishs(product.id)">cancel</mat-icon>
+                            </mat-card-content>
+                        </div>
+                    </mat-card>
+                </ng-container>
+
+            </div>
+        </div>
+        <ng-template #singleWarning>
+            <div class="centerDiv">
+                <h1>Votre liste d'envie est vide</h1>
+            </div>
+        </ng-template>
+    </mat-grid-tile>
 </mat-grid-list>
