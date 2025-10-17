@@ -3,9 +3,14 @@
     flex-direction: column;
     align-items: center;
     align-self: flex-start;
-    
+
+
+    // ::ng-deep .mat-grid-tile-content {
+    //     align-self: flex-start;
+    // }
+
     mat-grid-tile {
-      background: lightblue;
+        background: lightblue;
     }
 
     .list {
@@ -17,7 +22,7 @@
         align-self: flex-end;
         margin-top: 5px;
         margin-right: 5px;
-        
+
     }
 
     .gap {
@@ -45,7 +50,8 @@
         justify-content: center;
     }
 
-    mat-icon, .marginVertical {
+    mat-icon,
+    .marginVertical {
         margin-top: auto;
         margin-bottom: auto;
         z-index: 1;
@@ -80,7 +86,7 @@
         margin-top: auto;
         margin-bottom: auto;
     }
-    
+
     .mdc-button {
         min-width: 0;
     }
@@ -88,12 +94,15 @@
     .green {
         color: green;
     }
+
     .red {
         color: red;
     }
+
     .orange {
         color: orange;
     }
+
     .yellow {
         color: rgb(255, 196, 0);
     }

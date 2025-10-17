@@ -6,12 +6,13 @@
      </mat-grid-tile>
 
      <!-- second block -->
-      <mat-grid-tile colspan="9">
-          <div class="centerDiv">
+      <mat-grid-tile colspan="9" *ngIf="(productsWithQuantities$ | async) as products">
+          <div class="centerDiv" *ngIf="basketLength > 0;else singleWarning">
+
               <h1>Liste des produits présent dans le panier</h1>
           
               <div class="list gap">
-                  <ng-container *ngIf="productsWithQuantities$ | async as products">
+                  <ng-container>
           
                       <mat-card *ngFor="let product of products">
                           <div *ngIf="product.quantityInBasket > 0" class="card row">
@@ -48,16 +49,14 @@
                           <mat-icon class="red" (click)="deleteFrombasket(product.id)">cancel</mat-icon>
                       </div>
                       </mat-card>
-                      <!-- <div class="row">
-                          <mat-divider></mat-divider>
-                          <h2>Total :</h2>
-                          <p>1000
-                              <mat-icon class="marginVertical">euro_symbol</mat-icon>
-                          </p>
-                      </div> -->
                   </ng-container>
           
               </div>
           </div>
+          <ng-template #singleWarning>
+            <div class="centerDiv">
+                <h1>Votre panier est vide</h1>
+            </div>
+          </ng-template>
       </mat-grid-tile>
 </mat-grid-list>
