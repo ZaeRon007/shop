@@ -1,52 +1,58 @@
 import { Injectable, OnDestroy } from "@angular/core";
-import { BehaviorSubject, Observable, Subscription, take, tap } from "rxjs";
-import { userWishsEntity } from "../../core/models/userWishsEntity";
+import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
+import { userWishsEntity } from "../../core/models/userWishsEntity";
+import { productEntity } from "../../core/models/productEntity";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserWishsService implements OnDestroy {
-    public whishs$ = new BehaviorSubject<userWishsEntity[]>([new userWishsEntity]);
+
+    public wishsSubject = new BehaviorSubject<userWishsEntity[]>([]);
+    public wishs$ = this.wishsSubject.asObservable();
+
     private sub: Subscription = new Subscription();
     private sub1: Subscription = new Subscription();
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient) { }
 
+    public loadUserWishs(): void {
+        this.http.get<userWishsEntity[]>(`${environment.apiUrl}shop/wishs`).subscribe({
+            next: (wishs) => this.wishsSubject.next(wishs),
+            error: (err) => console.error('Erreur de chargement des souhaits', err)
+        });
     }
 
     public getUserWishs(): Observable<userWishsEntity[]> {
-        return this.http.get<userWishsEntity[]>(`${environment.apiUrl}shop/wishs`).pipe(
-            tap((wish: userWishsEntity[]) => {
-                this.whishs$.next(wish)
-            })
-        );
+        return this.wishs$;
     }
 
+    public addToWishs(productId: number): void {
+        const localWish: userWishsEntity = { productId } as userWishsEntity;
 
-    public addToWishs(id: number) {
-        this.postToWishs(id);
-        let localWish: userWishsEntity = new userWishsEntity;
-        localWish.productId = id;
-        const updatedWishs = this.whishs$.getValue();
-        updatedWishs.push(localWish);
+        const updatedWishs = [...this.wishsSubject.value, localWish];
+        this.wishsSubject.next(updatedWishs);
 
-        this.whishs$.next(updatedWishs);
+        this.sub = this.http.post(`${environment.apiUrl}shop/wishs/${productId}`, null)
+            .subscribe({
+                error: (err) => console.error('Erreur d’ajout au serveur', err)
+            });
     }
 
-    public postToWishs(product_id: number): void {
-        this.sub = this.http.post(`${environment.apiUrl}shop/wishs/${product_id}`, null).subscribe();
+    public removeFromWishs(productId: number): void {
+        const updatedWishs = this.wishsSubject.value.filter(w => w.productId !== productId);
+        this.wishsSubject.next(updatedWishs);
+
+        this.sub1 = this.http.delete(`${environment.apiUrl}shop/wishs/${productId}`)
+            .subscribe({
+                error: (err) => console.error('Erreur de suppression du serveur', err)
+            });
     }
 
-    public removeFromWishs(id: number) {
-        this.deleteFromWishs(id);
-        const updatedWishs = this.whishs$.getValue().filter(wish => wish.productId != id);
-        this.whishs$.next(updatedWishs);
-    }
-
-    public deleteFromWishs(product_id: number): void {
-        this.sub1 = this.http.delete(`${environment.apiUrl}shop/wishs/${product_id}`).subscribe();
+    public getUserWish(productId: number): Observable<productEntity> {
+        return this.http.get<productEntity>(`${environment.apiUrl}products/${productId}`);
     }
 
     ngOnDestroy(): void {
