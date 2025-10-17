@@ -20,7 +20,7 @@ public class userWishListController {
     userWishListService userWishListService;
 
     @GetMapping("")
-    public ResponseEntity<?> getAllProductsFromBasket() throws ParseException{
+    public ResponseEntity<?> getAllProductsFromWishList() throws ParseException{
         return ResponseEntity.ok().body(userWishListService.getAllProducts());
     }
 
