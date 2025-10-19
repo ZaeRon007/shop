@@ -4,12 +4,9 @@ import { RouterModule } from "@angular/router";
 import { CoreRoutingModule } from "./core-routing.module";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
-import { FormsModule } from "@angular/forms";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { MatDividerModule } from "@angular/material/divider";
-import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
@@ -24,6 +21,8 @@ import { LogInComponent } from "./components/log-in/log-in.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { AuthInterceptor } from "./interceptors/auth.interceptor";
+import { FormsModule } from "@angular/forms";
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
     declarations: [
@@ -46,37 +45,34 @@ import { AuthInterceptor } from "./interceptors/auth.interceptor";
         MatInputModule,
         MatGridListModule,
         MatCardModule,
-        MatDividerModule,
         MatIconModule,
         MatSidenavModule,
         MatBadgeModule,
+        MatFormFieldModule,
     ],
     exports: [
-        CommonModule,
-        AuthComponent,
-        LandingPageComponent,
-        LogInComponent,
-        RegisterComponent,
-        NotFoundComponent,
-        FullHeaderComponent,
-        SimpleHeaderComponent,
+        RouterModule,
         FormsModule,
+        CoreRoutingModule,
         MatButtonModule,
         MatFormFieldModule,
         MatSelectModule,
         MatInputModule,
         MatGridListModule,
         MatCardModule,
-        MatDividerModule,
         MatIconModule,
         MatSidenavModule,
         MatBadgeModule,
+        MatFormFieldModule,
+        FullHeaderComponent,
+        SimpleHeaderComponent
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'fr-FR' },
         AuthGuard,
         UnAuthGuard,
         provideHttpClient(withInterceptors([AuthInterceptor])),
+        // provideAnimationsAsync(),
     ],
-  })
-  export class CoreModule { }
+})
+export class CoreModule { }

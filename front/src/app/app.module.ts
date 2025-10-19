@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CoreModule } from './core/core.module';
 import { ShopModule } from './shop/shop.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -12,12 +12,12 @@ import { ShopModule } from './shop/shop.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
     ShopModule
   ],
-  providers: [
-    provideAnimationsAsync(),
+  exports: [
   ],
   bootstrap: [AppComponent]
 })

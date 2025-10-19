@@ -8,6 +8,7 @@ import { CoreModule } from "../core/core.module";
 import { WishComponent } from './components/wish/wish.component';
 import { AccountComponent } from './components/account/account.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { CommonModule } from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -20,14 +21,11 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
         SideNavComponent,
     ],
     imports: [
+        CommonModule,
         ShopRoutingModule,
         CoreModule
     ],
     exports: [
-        HomeComponent,
-        ProductsComponent,
-        ContactComponent,
-        BasketComponent,
     ],
   })
   export class ShopModule { }
