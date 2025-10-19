@@ -1,11 +1,17 @@
-.column {
+.row {
     display: flex;
-    flex-direction: column;
-    align-self: flex-start;
+    flex-direction: row;
+    height: 100%;
 
-
-    h1, p {
+    .main-div {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-self: flex-start;
+        width: 95%;
+    
+        h1, p {
+            display: flex;
+            justify-content: center;
+        }
     }
 }

@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
     trigger('openClose', [
       state('closed', style({ transform: 'translateX(-120%)' })),
       state('open', style({ transform: 'translateX(0)' })),
-      transition('closed <=> open', [animate('300ms ease-in-out')])
+      transition('closed <=> open', [animate('500ms ease-in-out')])
     ])
   ]
 })

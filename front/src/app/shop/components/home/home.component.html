@@ -1,15 +1,13 @@
 <app-full-header></app-full-header>
-<mat-grid-list cols="4">
-    <!-- first block -->
-     <mat-grid-tile colspan="1" class="app-side-nav">
-             <app-side-nav></app-side-nav>
-     </mat-grid-tile>
-
-     <!-- second block -->
-      <mat-grid-tile colspan="3">
-        <div class="column">
-          <h1>Bienvenue sur {{appTitle}}</h1>
-          <p>Consultez des milliers d'objets parmis notre boutique.</p>
-        </div>
-      </mat-grid-tile>
-</mat-grid-list>
+<div class="row">
+  <!-- first block -->
+  <div class="app-side-nav">
+    <app-side-nav></app-side-nav>
+  </div>
+  
+  <!-- second block -->
+  <div class="main-div">
+    <h1>Bienvenue sur {{appTitle}}</h1>
+    <p>Consultez des milliers d'objets parmis notre boutique.</p>
+  </div>
+</div>

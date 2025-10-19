@@ -1,11 +1,11 @@
 .choicesMenu {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     // margin: 5px 0;
     z-index: 1;
-    background-color: gray;
+    background-color: rgba(255, 255, 255, 0.952);
     height: 100%;
-    box-shadow: 10px 0 5px rgba(0, 0, 0, 0.322);
+    // box-shadow: 10px 0 5px rgba(0, 0, 0, 0.322);
 
     button {
         width: 100%;
@@ -14,25 +14,45 @@
         margin-top: 10px;
         font-size: medium;
     }
+
+    .max-width {
+        max-width: 150px;
+    }
+
+    .margin-left {
+        margin-left: 10px;
+    }
+
+    .margin {
+        margin: 10px;
+    }
 }
 
 .hamburgerMenu {
     display: flex;
-    margin: 15px auto;
+    margin: 15px;
+}
+
+.choicesMenu mat-icon,
+.hamburgerMenu {
     scale: 1.5;
 }
 
-
 @media (min-width: 950px) {
-    .hamburgerMenu {
+    .hamburgerMenu,
+    .close {
         display: none;
+    }
+    .choicesMenu {
+        transform: none !important;
     }
 }
 
 @media (max-width: 950px) {
     .choicesMenu {
         // display: none;
-        width: 150px;
+        width: 200px;
+        margin-top: -54px;
     }
 }
 
@@ -40,8 +60,8 @@
 @media (max-width : 450px) {
     .choicesMenu {
         // display: none;
-        width: 120px;
+        width: 200px;
 
-        
+
     }
 }
