@@ -1,4 +1,6 @@
-<div class="flex-column">
+<mat-icon (click)="toggleMenu()" class="hamburgerMenu">menu</mat-icon>
+
+<div [@openClose]="menuState" class="choicesMenu">
     <button mat-raised-button [routerLink]="['/shop/home']">Accueil
         <mat-icon>store</mat-icon>
     </button>

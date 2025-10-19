@@ -1,13 +1,47 @@
-.flex-column {
+.choicesMenu {
     display: flex;
     flex-direction: column;
-    margin: 5px 0;
-    
+    // margin: 5px 0;
+    z-index: 1;
+    background-color: gray;
+    height: 100%;
+    box-shadow: 10px 0 5px rgba(0, 0, 0, 0.322);
+
     button {
         width: 100%;
         height: 30px;
         justify-content: left;
-        margin-bottom: 10px;
+        margin-top: 10px;
         font-size: medium;
+    }
+}
+
+.hamburgerMenu {
+    display: flex;
+    margin: 15px auto;
+    scale: 1.5;
+}
+
+
+@media (min-width: 950px) {
+    .hamburgerMenu {
+        display: none;
+    }
+}
+
+@media (max-width: 950px) {
+    .choicesMenu {
+        // display: none;
+        width: 150px;
+    }
+}
+
+
+@media (max-width : 450px) {
+    .choicesMenu {
+        // display: none;
+        width: 120px;
+
+        
     }
 }
