@@ -1,5 +1,4 @@
 <app-full-header></app-full-header>
-
 <div class="container">
     <div class="app-side-nav">
         <app-side-nav></app-side-nav>
@@ -14,11 +13,11 @@
                 <ng-container>
         
                     <mat-card *ngFor="let product of products">
-                        <div class="card row">
+                        <div class="card row max-width">
         
                             <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
                             <mat-card-title>
-                                <h3 class="center">{{product.name}}</h3>
+                                <h4 class="center">{{product.name}}</h4>
                             </mat-card-title>
                             <mat-card-content>
                                 <mat-icon class="red" (click)="deleteFromWishs(product.id)">cancel</mat-icon>
