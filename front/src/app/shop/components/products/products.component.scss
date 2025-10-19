@@ -9,10 +9,6 @@
         align-items: center;
         overflow-y: auto;
         width: 95%;
-
-        .title {
-            margin-top: 20px;
-        }
     
         .wrap {
             display: flex;
@@ -20,7 +16,7 @@
             gap: 10px;
             justify-content: center;
             align-self: flex-start;
-            margin-top: 25px;
+            margin-top: 45px;
         }
     
         .card {
