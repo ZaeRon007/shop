@@ -16,9 +16,12 @@
     }
 
     .align-right1,
-    .align-right2 {
+    .align-right2,
+    .align-title {
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: 100px;
         
         mat-icon {
             scale: 1.5;
@@ -36,7 +39,7 @@
     }
 
     .align-right2 {
-        gap: 15px;
+        gap: 20px;
     }
 
 }
