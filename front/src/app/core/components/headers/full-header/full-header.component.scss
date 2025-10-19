@@ -12,15 +12,14 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        padding: 0 20px;
+        padding: 0 35px;
     }
 
-    .align-right1,
+    .align-left,
     .align-right2,
     .align-title {
         display: flex;
         align-items: center;
-        justify-content: center;
         width: 100px;
         
         mat-icon {
@@ -29,7 +28,7 @@
     }
 
 
-    .align-right1 {
+    .align-left {
         gap: 10px;
 
         h1 {
