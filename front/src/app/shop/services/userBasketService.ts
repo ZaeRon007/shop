@@ -9,8 +9,8 @@ import { environment } from "../../../environments/environment";
     providedIn: 'root'
 })
 export class UserBasketService implements OnDestroy {
-    public basketSubject$ = new BehaviorSubject<userBasketEntity[]>([new userBasketEntity])
-    public basket$ = this.basketSubject$.asObservable();
+    public basketSubject = new BehaviorSubject<userBasketEntity[]>([new userBasketEntity])
+    public basket$ = this.basketSubject.asObservable();
 
     private sub: Subscription = new Subscription();
     private sub1: Subscription = new Subscription();
@@ -31,7 +31,7 @@ export class UserBasketService implements OnDestroy {
     public getUserBasket(): Observable<userBasketEntity[]> {
         return this.http.get<userBasketEntity[]>(`${environment.apiUrl}shop/basket`).pipe(
             tap((product: userBasketEntity[]) => {
-                this.basketSubject$.next(product)
+                this.basketSubject.next(product)
             })
         );
     }
@@ -44,10 +44,10 @@ export class UserBasketService implements OnDestroy {
         let localItem: userBasketEntity = new userBasketEntity();
         localItem.productId = id;
         localItem.quantity = quantity;
-        const updatedBasket = this.basketSubject$.getValue();
+        const updatedBasket = this.basketSubject.getValue();
         updatedBasket.push(localItem);
 
-        this.basketSubject$.next(updatedBasket);
+        this.basketSubject.next(updatedBasket);
     }
 
     public increaseAmount(id: number, quantity: number) {
@@ -55,13 +55,13 @@ export class UserBasketService implements OnDestroy {
         item.quantity = quantity + 1;
         this.patchFrombasket(id, item);
 
-        const updatedBasket = this.basketSubject$.getValue().map((p: userBasketEntity) => {
+        const updatedBasket = this.basketSubject.getValue().map((p: userBasketEntity) => {
             if (p.productId === id)
                 return { ...p, quantity: item.quantity };
             else
                 return p;
         })
-        this.basketSubject$.next(updatedBasket);
+        this.basketSubject.next(updatedBasket);
     }
 
     public decreaseAmount(id: number, quantity: number) {
@@ -69,20 +69,20 @@ export class UserBasketService implements OnDestroy {
         if (quantity - 1 == 0) {
             this.removeFromBasket(id);
 
-            const updatedBasket = this.basketSubject$.getValue().filter(item => item.productId != id);
-            this.basketSubject$.next(updatedBasket);
+            const updatedBasket = this.basketSubject.getValue().filter(item => item.productId != id);
+            this.basketSubject.next(updatedBasket);
         }
         else {
             item.quantity = quantity - 1;
             this.patchFrombasket(id, item);
 
-            const updatedBasket = this.basketSubject$.getValue().map((p: userBasketEntity) => {
+            const updatedBasket = this.basketSubject.getValue().map((p: userBasketEntity) => {
                 if (p.productId === id)
                     return { ...p, quantity: item.quantity };
                 else
                     return p;
             })
-            this.basketSubject$.next(updatedBasket);
+            this.basketSubject.next(updatedBasket);
         }
     }
 
@@ -95,8 +95,8 @@ export class UserBasketService implements OnDestroy {
     }
 
     public removeFromBasket(id: number) {
-        const updatedBasket = this.basketSubject$.getValue().filter(item => item.productId != id);
-        this.basketSubject$.next(updatedBasket);
+        const updatedBasket = this.basketSubject.getValue().filter(item => item.productId != id);
+        this.basketSubject.next(updatedBasket);
         
         this.sub2 = this.http.delete(`${environment.apiUrl}shop/basket/${id}`)
         .subscribe({
