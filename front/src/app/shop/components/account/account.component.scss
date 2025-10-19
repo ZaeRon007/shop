@@ -1,14 +1,27 @@
-.main-account-div {
+.container {
     display: flex;
-    flex-direction: column;
-    align-self: flex-start;
+    flex-direction: row;
 
-    button {
-        max-width: 150px;
-    }
-    
-    .buttons-cfg {
+    .main-div {
         display: flex;
         justify-content: center;
+        width: 95%;
+
+        .main-account-div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 400px;
+        
+            button {
+                max-width: 150px;
+            }
+            
+            .buttons-cfg {
+                display: flex;
+                justify-content: center;
+            }
+        }
     }
 }
