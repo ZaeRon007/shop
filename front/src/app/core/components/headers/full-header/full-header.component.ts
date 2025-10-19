@@ -26,6 +26,7 @@ export class FullHeaderComponent implements OnInit, OnDestroy {
     this.sub2 = this.basketService.basket$.pipe(map(list => list.length)).subscribe(count => this.cartSize = count);
 
     this.wishsService.loadUserWishs();
+    this.basketService.getUserBasket();
   }
 
   ngOnDestroy(): void {
