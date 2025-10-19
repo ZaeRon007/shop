@@ -1,118 +1,123 @@
-.column {
+.test {
     display: flex;
-    justify-content: center;
-    overflow-y: auto;
+    flex-direction: row;
 
-    ::ng-deep .mat-grid-tile-content {
-        justify-content: unset;
+    .main-div {
         display: flex;
         flex-direction: column;
-    }
-
-
-    .wrap {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
         justify-content: center;
-        align-self: flex-start;
-        margin-top: 10px;
-    }
+        align-items: center;
+        overflow-y: auto;
+        width: 95%;
 
-    .card {
-        width: 300px;
-        height: auto;
-
-        .align_right {
-            align-self: flex-end;
-            margin-top: 5px;
-            margin-right: 5px;
-
-        }        
-
-        .center {
+        .title {
+            margin-top: 20px;
+        }
+    
+        .wrap {
             display: flex;
-            justify-content: center;
-        }
-
-        .justify-text {
-            text-align: justify;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        .smallGap {
+            flex-wrap: wrap;
             gap: 10px;
-        }
-
-
-        .row {
-            display: flex;
-            flex-direction: row;
-            gap: 5px;
-        }
-
-        .smallButton {
-            height: 20px;
-            width: 20px;
-            padding: 0;
-            border-radius: 0;
-            align-items: center;
             justify-content: center;
-            margin-top: auto;
-            margin-bottom: auto;
-
-            .mdc-button {
-                min-width: 0;
+            align-self: flex-start;
+            margin-top: 25px;
+        }
+    
+        .card {
+            width: 300px;
+            height: auto;
+    
+            .align_right {
+                align-self: flex-end;
+                margin-top: 5px;
+                margin-right: 5px;
+    
+            }        
+    
+            .center {
+                display: flex;
+                justify-content: center;
             }
-
+    
+            .justify-text {
+                text-align: justify;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+    
+            .smallGap {
+                gap: 10px;
+            }
+    
+    
+            .row {
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+            }
+    
+            .smallButton {
+                height: 20px;
+                width: 20px;
+                padding: 0;
+                border-radius: 0;
+                align-items: center;
+                justify-content: center;
+                margin-top: auto;
+                margin-bottom: auto;
+    
+                .mdc-button {
+                    min-width: 0;
+                }
+    
+            }
+    
+            .marginAuto {
+                margin: auto;
+            }
+    
+            mat-icon,
+            .marginVertical {
+                margin-top: auto;
+                margin-bottom: auto;
+                // z-index: 1;
+            }        
+    
+            .lightGrey {
+                color: lightgrey;
+            }
+    
+            .like {
+                color: pink;
+            }
+    
+            .yellow {
+                color: rgb(255, 196, 0);
+            }
+    
+            .green {
+                color: green;
+            }
+    
+            .red {
+                color: red;
+            }
+    
+            .orange {
+                color: orange;
+            }
+    
+            mat-grid-tile {
+                background: lightblue;
+            }
+    
+            img {
+                height: 275px;
+                width: 275px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+    
         }
-
-        .marginAuto {
-            margin: auto;
-        }
-
-        mat-icon,
-        .marginVertical {
-            margin-top: auto;
-            margin-bottom: auto;
-            // z-index: 1;
-        }        
-
-        .lightGrey {
-            color: lightgrey;
-        }
-
-        .like {
-            color: pink;
-        }
-
-        .yellow {
-            color: rgb(255, 196, 0);
-        }
-
-        .green {
-            color: green;
-        }
-
-        .red {
-            color: red;
-        }
-
-        .orange {
-            color: orange;
-        }
-
-        mat-grid-tile {
-            background: lightblue;
-        }
-
-        img {
-            height: 275px;
-            width: 275px;
-            margin-right: auto;
-            margin-left: auto;
-        }
-
     }
 }
