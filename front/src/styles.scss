@@ -28,3 +28,20 @@ app-side-nav,
 mat-grid-tile {
     height: 100%;
 }
+
+.invalid {
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch {
+        border-left: none !important;
+    }
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+        border-color: red !important;
+    }
+
+    mat-label {
+        color: red !important;
+    }
+}
