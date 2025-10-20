@@ -51,15 +51,3 @@
         }
     }
 }
-
-@media screen and (min-width: 900px) {
-    .user-register-title .centerLogo {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    app-simple-header {
-        display: none;
-    }
-}
