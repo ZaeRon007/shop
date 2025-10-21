@@ -1,13 +1,17 @@
-<app-full-header></app-full-header>
-<div class="row">
-  <!-- first block -->
-  <div class="app-side-nav">
-    <app-side-nav></app-side-nav>
-  </div>
-  
-  <!-- second block -->
-  <div class="main-div">
-    <h1>Bienvenue sur {{appTitle}}</h1>
-    <p>Consultez des milliers d'objets parmis notre boutique.</p>
+<div [@slideAnimation]="animationState()"
+    class="body">
+  <img *ngIf="animationState()" [src]="currentImage" alt="background" />
+  <app-full-header></app-full-header>
+  <div class="row">
+    <!-- first block -->
+    <div class="app-side-nav">
+      <app-side-nav></app-side-nav>
+    </div>
+
+    <!-- second block -->
+    <div class="main-div">
+      <h1>Bienvenue sur {{appTitle}}</h1>
+      <p>Consultez des milliers d'objets parmis notre boutique.</p>
+    </div>
   </div>
 </div>
