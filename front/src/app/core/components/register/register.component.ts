@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { Subscription, catchError, throwError } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { authRequest } from '../../models/auth.interface';
-import { animate, AnimationEvent, keyframes, style, transition, trigger } from '@angular/animations';
+import { useAnimation, AnimationEvent, transition, trigger } from '@angular/animations';
+import { wobbleAnimation } from '../../../../animations/wobble.animation';
 
 @Component({
   selector: 'app-register',
@@ -12,14 +13,7 @@ import { animate, AnimationEvent, keyframes, style, transition, trigger } from '
   animations: [
     trigger('wobble', [
       transition('false => true', [
-        animate('0.75s', keyframes([
-          style({ transform: 'translateX(-5%)', offset: 0.1 }),
-          style({ transform: 'translateX(5%)', offset: 0.3 }),
-          style({ transform: 'translateX(-5%)', offset: 0.5 }),
-          style({ transform: 'translateX(5%)', offset: 0.7 }),
-          style({ transform: 'translateX(-5%)', offset: 0.9 }),
-          style({ transform: 'translateX(0)', offset: 1 }),
-        ]))
+        useAnimation(wobbleAnimation)
       ]),
     ])
   ]
