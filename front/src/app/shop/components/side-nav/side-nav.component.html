@@ -7,7 +7,7 @@
       hiddenScale: 1
     }
 }">
-    <div *ngIf="showMenu()" class="choicesMenu">
+    <div *ngIf="showMenu() || (screenSize$ | async)" class="choicesMenu">
         <div class="max-width margin-left">
             <button mat-raised-button [routerLink]="['/shop/home']">Accueil
                 <mat-icon>store</mat-icon>

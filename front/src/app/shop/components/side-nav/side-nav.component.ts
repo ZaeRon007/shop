@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger, useAnimation } from '@angular/animations';
-import { Component, signal, Signal } from '@angular/core';
+import { Component, HostListener, signal, Signal } from '@angular/core';
 import { slideAnimation } from '../../../../animations/slide.animation';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-side-nav',
@@ -16,8 +17,12 @@ import { slideAnimation } from '../../../../animations/slide.animation';
 })
 export class SideNavComponent {
   protected showMenu = signal(false);
+  screenSize$ = new BehaviorSubject<boolean>(window.innerWidth >= 950);
 
-  logShowMenu(){
-    console.log('showMenu:',this.showMenu());
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    const isLarge = event.target.innerWidth >= 950;
+    this.screenSize$.next(isLarge);
   }
+
 }
