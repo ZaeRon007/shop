@@ -1,5 +1,6 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { animate, state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { Component, signal, Signal } from '@angular/core';
+import { slideAnimation } from '../../../../animations/slide.animation';
 
 @Component({
   selector: 'app-side-nav',
@@ -7,16 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./side-nav.component.scss'],
   animations: [
     trigger('openClose', [
-      state('closed', style({ transform: 'translateX(-120%)' })),
-      state('open', style({ transform: 'translateX(0)' })),
-      transition('closed <=> open', [animate('500ms ease-in-out')])
+      transition('* => *', [
+        useAnimation(slideAnimation)
+      ])
     ])
   ]
 })
 export class SideNavComponent {
-  protected menuState: 'open' | 'closed' = 'closed';
+  protected showMenu = signal(false);
 
-  toggleMenu() {
-    this.menuState = this.menuState === 'closed' ? 'open' : 'closed';
+  logShowMenu(){
+    console.log('showMenu:',this.showMenu());
   }
 }

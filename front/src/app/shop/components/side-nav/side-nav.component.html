@@ -1,16 +1,24 @@
-<mat-icon (click)="toggleMenu()" class="hamburgerMenu">menu</mat-icon>
-
-<div [@openClose]="menuState" class="choicesMenu">
-    <div class="max-width margin-left">
-        <button mat-raised-button [routerLink]="['/shop/home']">Accueil
-            <mat-icon>store</mat-icon>
-        </button>
-        <button mat-raised-button [routerLink]="['/shop/products']">Produits
-            <mat-icon>vertical_split</mat-icon>
-        </button>
-        <button mat-raised-button [routerLink]="['/shop/contact']">Contact
-            <mat-icon>contact_support</mat-icon>
-        </button>
+<mat-icon (click)="showMenu.set(true)" class="hamburgerMenu">menu</mat-icon>
+<div [@openClose]="{
+    value: showMenu(),
+    params: {
+      leaveEnd: '-100%',
+      enterStart: '-100%',
+      hiddenScale: 1
+    }
+}">
+    <div *ngIf="showMenu()" class="choicesMenu">
+        <div class="max-width margin-left">
+            <button mat-raised-button [routerLink]="['/shop/home']">Accueil
+                <mat-icon>store</mat-icon>
+            </button>
+            <button mat-raised-button [routerLink]="['/shop/products']">Produits
+                <mat-icon>vertical_split</mat-icon>
+            </button>
+            <button mat-raised-button [routerLink]="['/shop/contact']">Contact
+                <mat-icon>contact_support</mat-icon>
+            </button>
+        </div>
+        <mat-icon (click)="showMenu.set(false)" class="margin close">close</mat-icon>
     </div>
-    <mat-icon (click)="toggleMenu()" class="margin close">close</mat-icon>
 </div>
