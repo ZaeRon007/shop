@@ -41,13 +41,9 @@
 
             }
 
-            button.mat-flat-button {
+            button {
                 display: flex;
                 justify-self: center;
-                justify-content: center;
-                width: 50%;
-                align-items: center;
-                min-width: 126px;
             }
 
             .flex-column {
