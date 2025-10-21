@@ -1,7 +1,7 @@
 import { animate, animation, keyframes, style } from "@angular/animations";
 
 export const wobbleAnimation = animation([
-    animate('0.75s', keyframes([
+    animate('0.6s', keyframes([
         style({ transform: 'translateX(-5%)', offset: 0.1 }),
         style({ transform: 'translateX(5%)', offset: 0.3 }),
         style({ transform: 'translateX(-5%)', offset: 0.5 }),
