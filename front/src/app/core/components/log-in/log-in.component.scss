@@ -19,6 +19,9 @@
 
 
 .center {
+    display: unset;
+
+
     .user-login {
         background-color: white;
         justify-self: center;
@@ -28,9 +31,10 @@
 
         .user-login-form {
             align-items: center;
-            display: flex;
-            flex-direction: column;
 
+            mat-form-field {
+                display: flex;
+            }
 
             ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
                 color: black;
