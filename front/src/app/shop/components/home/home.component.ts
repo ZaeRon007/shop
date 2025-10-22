@@ -1,10 +1,11 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { slideAnimation } from '../../../../animations/slide.animation';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, startWith, Subscription } from 'rxjs';
+import { pictureSizeService } from '../../services/pictureSizeService';
 
 const animationDuration = 300;
-const animationInterval = 15000;
+const animationInterval = 10000;
 
 @Component({
   selector: 'app-home',
@@ -27,42 +28,35 @@ const animationInterval = 15000;
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public readonly appTitle = "SHOP";
-  screenSize$ = new BehaviorSubject<number>(window.innerWidth);
-
+  private screenSizeSub = new Subscription();
   images: string[] = [
     "assets/background/city-1920px.jpeg",
     "assets/background/city_path-1920px.jpeg",
     "assets/background/city_and_boat-1920px.jpeg",
   ];
 
-  currentImageIndex = 0;
+  private currentImageIndex$ = new BehaviorSubject<number>(0);
+  currentImagePath = '';
+  private sub = new Subscription();
   animationState = signal(true);
   intervalId: any;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.screenSize$.next(event.target.innerWidth);
+  constructor(private pictureService: pictureSizeService) {
+    pictureService.setImagesTab(this.images);
   }
 
-  currentImage(inputSize: BehaviorSubject<number>): string {
-    const size = inputSize.value;
-    const picture = this.images[this.currentImageIndex];
-
-    if (size >= 950) {
-      return picture;
-    }
-    else if (size < 950 && size >= 450) {
-      const base = picture.replace("-1920px.jpeg", "");
-      return `${base}-800px.jpeg`;
-    }
-    else {
-      const base = picture.replace("-1920px.jpeg", "");
-        return `${base}-450px.jpeg`;
-    }
-  }
-  
   ngOnInit(): void {
-    this.startSlideshow()
+    this.startSlideshow();
+    const combined$ = combineLatest([
+      this.currentImageIndex$,
+      this.pictureService.screenSize$
+    ]).pipe(
+      map(([index, _]) => this.pictureService.currentImageFromTab(index))
+    );
+
+    this.sub = combined$.subscribe(path => {
+      this.currentImagePath = path;
+    });
   }
 
   startSlideshow() {
@@ -73,7 +67,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   nextImage() {
     this.animationState.set(!this.animationState());
-    this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+    const next = (this.currentImageIndex$.value + 1) % this.images.length;
+    this.currentImageIndex$.next(next);
     setTimeout(() => this.animationState.set(!this.animationState()), animationDuration);
   }
 
@@ -81,5 +76,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
+    this.screenSizeSub.unsubscribe();
+    this.sub.unsubscribe();
   }
 }
