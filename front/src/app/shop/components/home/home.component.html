@@ -1,6 +1,8 @@
 <div [@slideAnimation]="animationState()"
     class="body">
-  <img *ngIf="animationState()" [src]="currentImage" alt="background" />
+  <img *ngIf="animationState() && (screenSize$ | async)" 
+      [src]="currentImage(screenSize$)"  
+      alt="background" />
   <app-full-header></app-full-header>
   <div class="row">
     <!-- first block -->
