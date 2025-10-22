@@ -1,21 +1,36 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { userInfosDto } from '../../../core/models/dto/userInfosDto';
+import { pictureSizeService } from '../../services/pictureSizeService';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
 })
-export class AccountComponent implements OnDestroy {
+export class AccountComponent implements OnInit, OnDestroy {
   user = new userInfosDto();
+  screenSize$ !: BehaviorSubject<number>;
+  private picture: string[] = ['assets/background/account-1920px.jpeg'];
   userSaved = new userInfosDto();
   getSub = new Subscription();
   putSub = new Subscription();
+  private screenSizeSub = new Subscription();
 
-  constructor(private authService: AuthService) {
+  currentImagePath = '';
+
+
+  constructor(private authService: AuthService,
+    private pictureService: pictureSizeService) {
+
     this.getUserInfos();
+    pictureService.setImagesTab(this.picture);
+  }
+  ngOnInit(): void {
+      this.screenSizeSub = this.pictureService.screenSize$.subscribe(() => {
+        this.currentImagePath = this.pictureService.currentStaticImage();
+      })
   }
 
   logOut() {
@@ -47,5 +62,6 @@ export class AccountComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.getSub.unsubscribe();
     this.putSub.unsubscribe();
+    this.screenSizeSub.unsubscribe();
   }
 }

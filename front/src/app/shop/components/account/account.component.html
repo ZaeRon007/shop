@@ -1,36 +1,42 @@
-<app-full-header></app-full-header>
-<div class="container">
-  <div class="app-side-nav">
-    <app-side-nav></app-side-nav>
-  </div>
+<div class="body">
+  <img [src]="currentImagePath" alt="background">
 
-  <div class="main-div">
-    <div class="main-account-div">
-      <h1>Mon compte</h1>
-    
-      <mat-form-field appearance="outline">
-        <mat-label>Firstname</mat-label>
-        <input matInput [(ngModel)]="user.firstname" name="firstname">
-      </mat-form-field>
-    
-      <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput [(ngModel)]="user.username" name="username">
-      </mat-form-field>
-    
-      <mat-form-field appearance="outline">
-        <mat-label>E-mail</mat-label>
-        <input matInput [(ngModel)]="user.email" name="email">
-      </mat-form-field>
-    
-      <div class="buttons-cfg">
-        <button mat-flat-button color="primary" type="submit" (click)="putUserInfos()" [disabled]="!isFormValid()">
-          Sauvegarder
-        </button>
-    
-        <button mat-flat-button (click)="logOut()">
-          Se déconnecter
-        </button>
+  <app-full-header></app-full-header>
+  <div class="container">
+    <div class="app-side-nav">
+      <app-side-nav></app-side-nav>
+    </div>
+
+    <div class="main-div">
+      <div class="main-account-div">
+        <h1>Mon compte</h1>
+
+        <mat-card>
+          <mat-form-field appearance="outline">
+            <mat-label>Firstname</mat-label>
+            <input matInput [(ngModel)]="user.firstname" name="firstname">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="user.username" name="username">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput [(ngModel)]="user.email" name="email">
+          </mat-form-field>
+
+          <div class="buttons-cfg">
+            <button mat-flat-button color="primary" type="submit" (click)="putUserInfos()" [disabled]="!isFormValid()">
+              Sauvegarder
+            </button>
+
+            <button mat-flat-button (click)="logOut()">
+              Se déconnecter
+            </button>
+          </div>
+        </mat-card>
       </div>
     </div>
   </div>
