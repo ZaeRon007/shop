@@ -3,6 +3,7 @@ import { Subscription, BehaviorSubject, forkJoin, switchMap } from 'rxjs';
 import { productEntity } from '../../../core/models/productEntity';
 import { UserWishsService } from '../../services/userWishsService';
 import { userWishsEntity } from '../../../core/models/userWishsEntity';
+import { pictureSizeService } from '../../services/pictureSizeService';
 
 @Component({
   selector: 'app-wish',
@@ -12,10 +13,15 @@ import { userWishsEntity } from '../../../core/models/userWishsEntity';
 export class WishComponent {
   wishsTab$ = new BehaviorSubject<productEntity[]>([]);
   wishsLength = 0;
+  currentImagePath = '';
+  private screenSizeSub = new Subscription();
+  private picture: string[] = ['assets/background/wishlist-1920px.jpeg'];
   private sub: Subscription = new Subscription();
   private sub1: Subscription = new Subscription();
 
-  constructor(private wishService: UserWishsService) {
+  constructor(private wishService: UserWishsService,
+              private pictureService: pictureSizeService) {
+    pictureService.setImagesTab(this.picture);
   }
 
   ngOnInit(): void {
@@ -32,6 +38,9 @@ export class WishComponent {
       error: (err) => console.error(err)
     });
 
+    this.screenSizeSub = this.pictureService.screenSize$.subscribe(() => {
+      this.currentImagePath = this.pictureService.currentStaticImage();
+    })
   }
 
   deleteFromWishs(id: number) {
@@ -44,5 +53,6 @@ export class WishComponent {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
+    this.screenSizeSub.unsubscribe();
   }
 }

@@ -1,37 +1,41 @@
-<app-full-header></app-full-header>
-<div class="container">
-    <div class="app-side-nav">
-        <app-side-nav></app-side-nav>
-    </div>
+<div class="body">
+    <img  class="submarine" [src]="currentImagePath" alt="background" />
 
-    <div *ngIf="(wishsTab$ | async) as products" class="main-div">
-        <div class="centerDiv" *ngIf="wishsLength > 0;else singleWarning">
-        
-            <h1>Liste d'envie</h1>
-        
-            <div class="list gap">
-                <ng-container>
-        
-                    <mat-card *ngFor="let product of products">
-                        <div class="card row max-width">
-        
-                            <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
-                            <mat-card-title>
-                                <h4 class="center">{{product.name}}</h4>
-                            </mat-card-title>
-                            <mat-card-content>
-                                <mat-icon class="red" (click)="deleteFromWishs(product.id)">cancel</mat-icon>
-                            </mat-card-content>
-                        </div>
-                    </mat-card>
-                </ng-container>
-        
-            </div>
+    <app-full-header></app-full-header>
+    <div class="container">
+        <div class="app-side-nav">
+            <app-side-nav></app-side-nav>
         </div>
-        <ng-template #singleWarning>
-            <div class="centerDiv">
-                <h1>Votre liste d'envie est vide</h1>
+
+        <div *ngIf="(wishsTab$ | async) as products" class="main-div">
+            <div class="centerDiv" *ngIf="wishsLength > 0;else singleWarning">
+
+                <h1>Liste d'envie</h1>
+
+                <div class="list gap">
+                    <ng-container>
+
+                        <mat-card *ngFor="let product of products">
+                            <div class="card row max-width">
+
+                                <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
+                                <mat-card-title>
+                                    <h4 class="center">{{product.name}}</h4>
+                                </mat-card-title>
+                                <mat-card-content>
+                                    <mat-icon class="red" (click)="deleteFromWishs(product.id)">cancel</mat-icon>
+                                </mat-card-content>
+                            </div>
+                        </mat-card>
+                    </ng-container>
+
+                </div>
             </div>
-        </ng-template>
+            <ng-template #singleWarning>
+                <div class="centerDiv">
+                    <h1>Votre liste d'envie est vide</h1>
+                </div>
+            </ng-template>
+        </div>
     </div>
 </div>
