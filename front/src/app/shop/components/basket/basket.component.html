@@ -1,70 +1,74 @@
-<app-full-header></app-full-header>
-<div class="container">
-    <div class="app-side-nav">
-        <app-side-nav></app-side-nav>
-    </div>
+<div class="body">
+    <img class="submarine" [src]="currentImagePath" alt="background">
 
-    <div *ngIf="(productsWithQuantities$ | async) as products" class="main-div">
-        <div class="centerDiv" *ngIf="basketLength > 0;else singleWarning">
+    <app-full-header></app-full-header>
+    <div class="container">
+        <div class="app-side-nav">
+            <app-side-nav></app-side-nav>
+        </div>
 
-            <h1>Votre panier</h1>
+        <div *ngIf="(productsWithQuantities$ | async) as products" class="main-div">
+            <div class="centerDiv" *ngIf="basketLength > 0;else singleWarning">
 
-            <div class="list gap">
-                <ng-container *ngFor="let product of products">
-                    <mat-card *ngIf="product.quantityInBasket > 0">
-                        <div class="card">
+                <h1>Votre panier</h1>
 
-                            
-                            <div class="row">
-                                <div class="column margin-left">
-                                    <mat-card-title>
-                                        <h4 class="center">{{product.name}}</h4>
-                                    </mat-card-title>
-                                    <div class="row gap">
+                <div class="list gap">
+                    <ng-container *ngFor="let product of products">
+                        <mat-card *ngIf="product.quantityInBasket > 0">
+                            <div class="card">
+
+
+                                <div class="row">
+                                    <div class="column margin-left">
+                                        <mat-card-title>
+                                            <h4 class="center">{{product.name}}</h4>
+                                        </mat-card-title>
+                                        <div class="row gap">
+                                            <div class="row height align-items">
+                                                <p>{{product.inventoryStatus}}</p>
+                                                <mat-icon *ngIf="product.inventoryStatus === 'INSTOCK'"
+                                                    class="green">check_circle</mat-icon>
+                                                <mat-icon *ngIf="product.inventoryStatus === 'OUTOFSTOCK'"
+                                                    class="red">error</mat-icon>
+                                                <mat-icon *ngIf="product.inventoryStatus === 'LOWSTOCK'"
+                                                    class="orange">warning</mat-icon>
+                                            </div>
+                                        </div>
+
                                         <div class="row height align-items">
-                                            <p>{{product.inventoryStatus}}</p>
-                                            <mat-icon *ngIf="product.inventoryStatus === 'INSTOCK'"
-                                                class="green">check_circle</mat-icon>
-                                            <mat-icon *ngIf="product.inventoryStatus === 'OUTOFSTOCK'"
-                                                class="red">error</mat-icon>
-                                            <mat-icon *ngIf="product.inventoryStatus === 'LOWSTOCK'"
-                                                class="orange">warning</mat-icon>
+                                            <p>Qty:</p>
+                                            <button mat-icon-button class="smallButton"
+                                                (click)="decrease(product.id, product.quantityInBasket)">
+                                                <mat-icon class="marginAuto">remove</mat-icon>
+                                            </button>
+                                            <p>{{product.quantityInBasket}}</p>
+                                            <button mat-icon-button class="smallButton"
+                                                (click)="increase(product.id, product.quantityInBasket)">
+                                                <mat-icon class="marginAuto">add</mat-icon>
+                                            </button>
+                                            <p>{{product.price}}</p>
+                                            <mat-icon>euro_symbol</mat-icon>
                                         </div>
                                     </div>
-
-                                    <div class="row height align-items">
-                                        <p>Qty:</p>
-                                        <button mat-icon-button class="smallButton"
-                                            (click)="decrease(product.id, product.quantityInBasket)">
-                                            <mat-icon class="marginAuto">remove</mat-icon>
-                                        </button>
-                                        <p>{{product.quantityInBasket}}</p>
-                                        <button mat-icon-button class="smallButton"
-                                            (click)="increase(product.id, product.quantityInBasket)">
-                                            <mat-icon class="marginAuto">add</mat-icon>
-                                        </button>
-                                        <p>{{product.price}}</p>
-                                        <mat-icon>euro_symbol</mat-icon>
-                                    </div>
+                                    <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
+                                    <mat-card-content class="row negativ-margin-left">
+                                        <mat-icon class="red" (click)="deleteFrombasket(product.id)">cancel</mat-icon>
+                                    </mat-card-content>
                                 </div>
-                                <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
-                                <mat-card-content class="row negativ-margin-left">
-                                    <mat-icon class="red" (click)="deleteFrombasket(product.id)">cancel</mat-icon>
-                                </mat-card-content>
+
+
+
                             </div>
+                        </mat-card>
+                    </ng-container>
 
-
-
-                        </div>
-                    </mat-card>
-                </ng-container>
-
+                </div>
             </div>
+            <ng-template #singleWarning>
+                <div class="centerDiv">
+                    <h1>Votre panier est vide</h1>
+                </div>
+            </ng-template>
         </div>
-        <ng-template #singleWarning>
-            <div class="centerDiv">
-                <h1>Votre panier est vide</h1>
-            </div>
-        </ng-template>
     </div>
 </div>

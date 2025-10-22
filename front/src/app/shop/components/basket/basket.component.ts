@@ -5,6 +5,7 @@ import { productEntity } from '../../../core/models/productEntity';
 import { ProductWithQuantity } from '../../../core/models/ProductWithQuantity';
 import { GlobalService } from '../../services/globalService';
 import { userBasketEntity } from '../../../core/models/userBasketEntity';
+import { pictureSizeService } from '../../services/pictureSizeService';
 
 @Component({
   selector: 'app-basket',
@@ -13,13 +14,18 @@ import { userBasketEntity } from '../../../core/models/userBasketEntity';
 })
 export class BasketComponent implements OnInit, OnDestroy {
   productsTab$ = new BehaviorSubject<productEntity[]>([]);
+  private picture: string[] = ['assets/background/basket-1920px.jpeg'];
   basketLength = 0;
   private sub: Subscription = new Subscription();
   private sub1: Subscription = new Subscription();
   public productsWithQuantities$!: Observable<ProductWithQuantity[]>;
+  private screenSizeSub = new Subscription();
+  currentImagePath = '';
 
   constructor(private basketService: UserBasketService,
-    private globalService: GlobalService) {
+    private globalService: GlobalService,
+    private pictureService: pictureSizeService) {
+      pictureService.setImagesTab(this.picture);
   }
 
   ngOnInit(): void {
@@ -27,6 +33,10 @@ export class BasketComponent implements OnInit, OnDestroy {
     this.sub1 = this.basketService.basket$.subscribe((basket: userBasketEntity[]) => {
       this.basketLength = basket.length;
     });
+
+    this.screenSizeSub = this.pictureService.screenSize$.subscribe(() => {
+      this.currentImagePath = this.pictureService.currentStaticImage();
+    })
 
     // combine latest updates and insert item quantity into productsWithQuantities
     this.productsWithQuantities$ = this.globalService.Init();
@@ -48,6 +58,7 @@ export class BasketComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
+    this.screenSizeSub.unsubscribe();
   }
 
 }
