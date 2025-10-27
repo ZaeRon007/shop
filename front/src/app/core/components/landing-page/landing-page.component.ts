@@ -1,15 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { pictureSizeService } from '../../../shop/services/pictureSizeService';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
-export class LandingPageComponent {
-  
-  constructor(private router: Router){
+export class LandingPageComponent implements OnInit{
+  private picture: string[] = ['assets/background/shop-1920px.jpeg'];
+  private screenSizeSub = new Subscription();
+  currentImagePath = '';
 
+  constructor(private router: Router,
+    private pictureService: pictureSizeService){
+
+      pictureService.setImagesTab(this.picture);
+  }
+
+  ngOnInit(): void {
+      this.screenSizeSub = this.pictureService.screenSize$.subscribe(() => {
+        this.currentImagePath = this.pictureService.currentStaticImage();
+      })
   }
   public readonly appTitle = "Shop";
 
