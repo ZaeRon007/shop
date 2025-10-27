@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { pictureSizeService } from '../../../shop/services/pictureSizeService';
@@ -8,7 +8,7 @@ import { pictureSizeService } from '../../../shop/services/pictureSizeService';
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
-export class LandingPageComponent implements OnInit{
+export class LandingPageComponent implements OnInit, OnDestroy{
   private picture: string[] = ['assets/background/shop-1920px.jpeg'];
   private screenSizeSub = new Subscription();
   currentImagePath = '';
@@ -28,5 +28,9 @@ export class LandingPageComponent implements OnInit{
 
   public start(){
     this.router.navigateByUrl('/auth');
+  }
+
+  ngOnDestroy(): void {
+      this.screenSizeSub.unsubscribe();
   }
 }
