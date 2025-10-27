@@ -1,51 +1,65 @@
-.user-register-title {
-    display: grid;
+.body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
-    h2 {
-        justify-self: center;
+    img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
     }
 
-    mat-icon {
-        margin-right: 1rem;
+
+    .user-register-title {
+        display: grid;
+
+        h2 {
+            justify-self: center;
+        }
+
+        mat-icon {
+            margin-right: 1rem;
+        }
     }
-}
 
-.center {
-    display: unset;
+    .center {
+        display: unset;
 
-    .user-register {
-        background-color: white;
-        justify-self: center;
-        width: 25%;
-        min-width: 250px;
-        
-        .user-register-form {
-            align-items: center;
+        .user-register {
+            background-color: white;
+            justify-self: center;
+            width: 25%;
+            min-width: 250px;
 
-            mat-form-field {
-                display: flex;
-            }
+            .user-register-form {
+                align-items: center;
 
-            ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
-                color: black;
+                mat-form-field {
+                    display: flex;
+                }
 
-            }
+                ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+                    color: black;
 
-            button {
-                display: flex;
-                justify-self: center;
-            }
+                }
 
-            .flex-column {
-                display: grid;
-            }
+                button {
+                    display: flex;
+                    justify-self: center;
+                }
 
-            .error {
-                display: flex;
-                justify-content: center;
-                color: red;
-                width: 250px;
-                margin-top: -10px;
+                .flex-column {
+                    display: grid;
+                }
+
+                .error {
+                    display: flex;
+                    justify-content: center;
+                    color: red;
+                    width: 250px;
+                    margin-top: -10px;
+                }
             }
         }
     }
