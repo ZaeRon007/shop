@@ -11,7 +11,6 @@ import { pictureSizeService } from '../../services/pictureSizeService';
 })
 export class AccountComponent implements OnInit, OnDestroy {
   user = new userInfosDto();
-  screenSize$ !: BehaviorSubject<number>;
   private picture: string[] = ['assets/background/account-1920px.jpeg'];
   userSaved = new userInfosDto();
   getSub = new Subscription();
