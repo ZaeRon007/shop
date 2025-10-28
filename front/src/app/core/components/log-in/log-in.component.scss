@@ -42,7 +42,7 @@
         }
 
         .user-login {
-            background-color: rgba($color: #ffffff00, $alpha: 0.92);
+            background-color: var(--backgroundColor);
 
             margin-top: 70px;
             width: 35%;
