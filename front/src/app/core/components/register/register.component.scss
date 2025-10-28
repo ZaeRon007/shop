@@ -10,57 +10,116 @@
         z-index: -1;
     }
 
+    .container {
+        display: flex;
+        flex-direction: row;
 
-    .user-register-title {
-        display: grid;
+        .arrowBack {
+            width: 5%;
 
-        h2 {
-            justify-self: center;
+            mat-icon {
+                margin: 15px 0 0 15px;
+                scale: 2;
+            }
         }
 
-        mat-icon {
-            margin-right: 1rem;
-        }
-    }
 
-    .center {
-        display: unset;
+        .center {
+            display: unset;
+            width: 95%;
 
-        .user-register {
-            background-color: white;
-            justify-self: center;
-            width: 25%;
-            min-width: 250px;
+            .user-register-title h1,
+            .user-register {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
 
-            .user-register-form {
-                align-items: center;
+            .user-register-title h1 {
 
-                mat-form-field {
-                    display: flex;
-                }
+                margin-top: 5px;
+                font-size: 2.5rem;
+              }
+              
 
-                ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
-                    color: black;
+            .user-register {
+                background-color: rgba($color: lightgrey, $alpha: 0.92);
 
-                }
+                margin-top: 70px;
+                width: 35%;
+                max-width: 400px;
+                min-width: 250px;
 
-                button {
-                    display: flex;
-                    justify-self: center;
-                }
 
-                .flex-column {
-                    display: grid;
-                }
+                .user-register-form {
+                    align-items: center;
 
-                .error {
-                    display: flex;
-                    justify-content: center;
-                    color: red;
-                    width: 250px;
-                    margin-top: -10px;
+                    mat-form-field {
+                        display: flex;
+
+                        mat-label {
+                            font-size: 1.3rem;
+                        }
+                    }
+
+                    ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+                        color: black;
+
+                    }
+
+                    button {
+                        display: flex;
+                        justify-self: center;
+                        font-size: 1.3rem;
+                    }
+
+                    .flex-column {
+                        display: grid;
+                    }
+
+                    .error {
+                        display: flex;
+                        justify-content: center;
+                        color: red;
+                        width: 250px;
+                        margin-top: -10px;
+                    }
                 }
             }
         }
+    }
+}
+
+@media (max-width: 950px) {
+
+    .body .container .arrowBack mat-icon {
+        scale: 1.8;
+    }
+
+    .body .container .center .user-register-title h1 {
+        font-size: 2rem;
+    }
+
+    .body .container .center .user-register .user-register-form button,
+    .body .container .center .user-register .user-register-form mat-form-field mat-label {
+        font-size: 1rem;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+    .body .container .arrowBack mat-icon {
+        scale: 1.4;
+        margin-top: 10px;
+    }
+
+    .body .container .center .user-register-title h1 {
+        font-size: 1.8rem;
+    }
+
+    .body .container .center .user-register .user-register-form button,
+    .body .container .center .user-register .user-register-form mat-form-field mat-label {
+        font-size: 1rem;
     }
 }
