@@ -1,44 +1,50 @@
 <div class="body">
     <img [src]="currentImagePath" alt="background">
-
-
-
     <app-simple-header></app-simple-header>
-    <div class="user-login-title">
-        <a [routerLink]="['/auth']">
-            <mat-icon>arrow_back</mat-icon>
-        </a>
-        <h2>
-            Se connecter
-        </h2>
-    </div>
-    <div class="center">
-        <mat-card class="user-login">
-            <mat-card-content>
-                <form class="user-login-form flex-column">
 
-                    <mat-form-field [@wobble]="wobbleField" (@wobble.done)="wobbleField = false"
-                        (@wobble.start)="onWobbleStart($event)" appearance="outline">
-                        <mat-label>E-mail</mat-label>
-                        <input matInput [(ngModel)]="user.email" name="email">
-                    </mat-form-field>
+    <div class="container">
 
-                    <mat-form-field [@wobble]="wobbleField" (@wobble.done)="wobbleField = false"
-                        (@wobble.start)="onWobbleStart($event)" appearance="outline">
-                        <mat-label>Mot de passe</mat-label>
-                        <input matInput [(ngModel)]="user.password" type="password" name="password">
-                    </mat-form-field>
-
-                    <p *ngIf="showError" class="error">
-                        L'adresse e-mail ou le mot de passe est invalide !
-                    </p>
-
-                    <button mat-flat-button color="primary" type="submit" (click)="onSubmit()"
-                        [disabled]="!isFormValid()">
-                        Se connecter
-                    </button>
-                </form>
-            </mat-card-content>
-        </mat-card>
+        <div class="arrowBack">
+            <a [routerLink]="['/auth']">
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+        </div>
+        
+        <div class="center">
+    
+            <div class="user-login-title">
+                <h1>
+                    Se connecter
+                </h1>
+            </div>
+    
+            <mat-card class="user-login">
+                <mat-card-content>
+                    <form class="user-login-form flex-column">
+    
+                        <mat-form-field [@wobble]="wobbleField" (@wobble.done)="wobbleField = false"
+                            (@wobble.start)="onWobbleStart($event)" appearance="outline">
+                            <mat-label>E-mail</mat-label>
+                            <input matInput [(ngModel)]="user.email" name="email">
+                        </mat-form-field>
+    
+                        <mat-form-field [@wobble]="wobbleField" (@wobble.done)="wobbleField = false"
+                            (@wobble.start)="onWobbleStart($event)" appearance="outline">
+                            <mat-label>Mot de passe</mat-label>
+                            <input matInput [(ngModel)]="user.password" type="password" name="password">
+                        </mat-form-field>
+    
+                        <p *ngIf="showError" class="error">
+                            L'adresse e-mail ou le mot de passe est invalide !
+                        </p>
+    
+                        <button mat-flat-button color="primary" type="submit" (click)="onSubmit()"
+                            [disabled]="!isFormValid()">
+                            Se connecter
+                        </button>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>
