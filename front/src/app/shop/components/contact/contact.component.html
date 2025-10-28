@@ -1,32 +1,40 @@
-<app-full-header></app-full-header>
-<div class="container">
-    <div class="app-side-nav">
-        <app-side-nav></app-side-nav>
-    </div>
-    <div class="main-contact-div">
-        <div class="user-login-title">
-            <h1>Demande de contact</h1>
+<div class="body">
+    <img [src]="currentImagePath" alt="background">
+
+
+    <app-full-header></app-full-header>
+    <div class="container">
+        <div class="app-side-nav">
+            <app-side-nav></app-side-nav>
         </div>
-        <mat-card class="user-login">
-            <mat-card-content>
-                <div class="user-login-form flex-column">
-    
-                    <mat-form-field appearance="outline">
-                        <mat-label>E-mail</mat-label>
-                        <input matInput [(ngModel)]="form.email" name="email">
-                    </mat-form-field>
-    
-                    <mat-form-field appearance="outline" class="message">
-                        <mat-label>Message</mat-label>
-                        <textarea matInput [(ngModel)]="form.message" name="message"></textarea>
-                    </mat-form-field>
-    
-                    <button mat-flat-button color="primary" type="submit" (click)="onSubmit()"
-                        [disabled]="!isFormValid()">
-                        Envoyer
-                    </button>
-                </div>
-            </mat-card-content>
-        </mat-card>
+
+        <div class="main-contact-div">
+
+            <div class="contact-title">
+                <h1>Demande de contact</h1>
+            </div>
+            
+            <mat-card class="contact">
+                <mat-card-content>
+                    <div class="contact-form flex-column">
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>E-mail</mat-label>
+                            <input matInput [(ngModel)]="form.email" name="email">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="message">
+                            <mat-label>Message</mat-label>
+                            <textarea matInput [(ngModel)]="form.message" name="message"></textarea>
+                        </mat-form-field>
+
+                        <button mat-flat-button color="primary" type="submit" (click)="onSubmit()"
+                            [disabled]="!isFormValid()">
+                            Envoyer
+                        </button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>
