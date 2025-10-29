@@ -6,11 +6,13 @@ import { authRequest } from "../models/auth.interface";
 import { loginRequest } from "../models/dto/loginRequest.interface";
 import { environment } from "../../../environments/environment";
 import { userInfosDto } from "../models/dto/userInfosDto";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
+    private jwtHelper = new JwtHelperService();
     param: string = 'access_token';
 
     constructor(private router: Router,
@@ -38,11 +40,12 @@ export class AuthService {
      * @returns boolean
     */
     isLoggedIn(): boolean {
-        if (this.getToken()) {
-            return true;
-        }
+        const token = this.getToken();
 
-        return false;
+        if (!token)
+            return false;
+
+        return !this.jwtHelper.isTokenExpired(token);
     }
 
     /**
@@ -60,9 +63,8 @@ export class AuthService {
      * Force user logOut
     */
     logOut() {
-        let removeItem = localStorage.removeItem(this.param);
-        if (removeItem == null)
-            this.router.navigateByUrl('');
+        localStorage.removeItem(this.param);
+        this.router.navigateByUrl('');
     }
 
     /**
