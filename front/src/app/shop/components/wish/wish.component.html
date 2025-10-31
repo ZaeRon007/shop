@@ -1,7 +1,8 @@
 <div class="body">
-    <img  class="submarine" [src]="currentImagePath" alt="background" />
+    <img class="submarine" [src]="currentImagePath" alt="background" />
 
     <app-full-header></app-full-header>
+
     <div class="container">
         <div class="app-side-nav">
             <app-side-nav></app-side-nav>
@@ -14,18 +15,20 @@
 
                 <div class="list gap">
                     <ng-container>
-
+                        
                         <mat-card *ngFor="let product of products">
-                            <div class="card row max-width">
-
-                                <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
-                                <mat-card-title>
-                                    <h4 class="center">{{product.name}}</h4>
-                                </mat-card-title>
-                                <mat-card-content>
-                                    <mat-icon class="red" (click)="deleteFromWishs(product.id)">cancel</mat-icon>
-                                </mat-card-content>
+                        
+                            <div class="arrow">
+                                <mat-icon class="red" (click)="deleteFromWishs(product.id)">cancel</mat-icon>
                             </div>
+
+                            <mat-card-title>
+                                <p class="center">{{product.name}}</p>
+                            </mat-card-title>
+
+                            <mat-card-content>
+                            <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
+                            </mat-card-content>
                         </mat-card>
                     </ng-container>
 

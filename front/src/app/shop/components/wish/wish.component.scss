@@ -1,81 +1,81 @@
 .body {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
 
     .submarine {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        position: absolute;
         z-index: -1;
+        // object-fit: cover;
     }
 
     .container {
         display: flex;
         flex-direction: row;
-        justify-content: center;
-
+        position: relative;
+        min-height: 100vh;
+        overflow-y: auto;
 
         .main-div {
             width: 95%;
-            margin-left: -2.5%;
+            position: relative;
+            margin: 0 auto;
 
             .centerDiv {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 align-self: flex-start;
-
+                
+                h1 {
+                    font-size: 2.5rem;
+                }
+                
+                p {
+                    color: black;
+                    font-size: 1.7rem;
+                }
+                
                 mat-grid-tile {
                     background: lightblue;
+                    height: 50px;
                 }
-
+                
                 .list {
+                    flex-wrap: wrap;
                     display: flex;
-                    flex-direction: column;
+                    // flex-direction: column;
+                    width: 900px;
 
-                    .max-width {
-                        max-width: 340px;
+                    .arrow {
+                        display: flex;
+                        justify-content: flex-end;
+
+                        mat-icon {
+                            margin: 10px;
+                        }
                     }
 
                     mat-card-title {
                         display: flex;
-                        justify-content: flex-start;
-                        width: 150px;
+                        align-items: center;
+                        justify-content: center;
+                        height: 50px;
                     }
-
-                    mat-card {
-                        height: 120px;
-                    }
-                }
-
-                .align_right {
-                    align-self: flex-end;
-                    margin-top: 5px;
-                    margin-right: 5px;
-
                 }
 
                 .gap {
                     gap: 10px;
                 }
 
-                .smallGap {
-                    gap: 10px;
-                }
-
-                .card {
-                    height: auto;
-                }
-
                 .row {
                     display: flex;
                     flex-direction: row;
-                    gap: 5px;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-top: 5px;
                 }
 
                 .center {
@@ -83,41 +83,16 @@
                     justify-content: center;
                 }
 
-                mat-icon,
-                .marginVertical {
+                mat-icon {
                     margin-top: auto;
                     margin-bottom: auto;
                     z-index: 1;
                 }
 
-                .marginAuto {
-                    margin: auto;
-                }
-
-                .justify-text {
-                    text-align: justify;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                }
-
                 img {
-                    height: 100px;
-                    width: 100px;
-                    margin-top: auto;
-                    margin-bottom: auto;
-                    margin-left: 10px;
-                    margin-right: 30px;
-                }
-
-                .smallButton {
-                    height: 20px;
-                    width: 20px;
-                    padding: 0;
-                    border-radius: 0;
-                    align-items: center;
-                    justify-content: center;
-                    margin-top: auto;
-                    margin-bottom: auto;
+                    height: 240px;
+                    width: 240px;
+                    // margin: 10px;
                 }
 
                 .mdc-button {
@@ -149,5 +124,34 @@
                 }
             }
         }
+    }
+}
+
+@media (max-width: 950px){
+    .body .container .main-div .centerDiv h1 {
+        font-size: 2rem;
+    }
+
+    .body .container .main-div .centerDiv p {
+        font-size: 1.5rem;
+    }
+
+    .body .container .main-div .centerDiv .list {
+        width: 600px;
+    }
+    
+}
+
+@media (max-width: 450px){
+    .body .container .main-div .centerDiv h1 {
+        font-size: 1.8rem;
+    }
+
+    .body .container .main-div .centerDiv p {
+        font-size: 1.3rem;
+    }
+
+    .body .container .main-div .centerDiv .list {
+        width: 300px;
     }
 }
