@@ -36,7 +36,7 @@
     scale: 1.5;
 }
 
-@media (min-width: 950px) {
+@media (min-width: 1190px) {
     .hamburgerMenu,
     .close {
         display: none;
@@ -46,7 +46,7 @@
     }
 }
 
-@media (max-width: 949px) {
+@media (max-width: 1189px) {
     .choicesMenu {
         width: 200px;
         margin-top: -54px;
