@@ -17,7 +17,6 @@ export class WishComponent {
   private screenSizeSub = new Subscription();
   private picture: string[] = ['assets/background/wishlist-1920px.jpeg'];
   private sub: Subscription = new Subscription();
-  private sub1: Subscription = new Subscription();
 
   constructor(private wishService: UserWishsService,
               private pictureService: pictureSizeService) {
@@ -52,7 +51,6 @@ export class WishComponent {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
-    this.sub1.unsubscribe();
     this.screenSizeSub.unsubscribe();
   }
 }

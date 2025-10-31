@@ -3,7 +3,6 @@ import { BehaviorSubject, combineLatest, map, Observable, Subscription, tap } fr
 import { ProductWithQuantity } from "../../core/models/ProductWithQuantity";
 import { UserBasketService } from "./userBasketService";
 import { ProductService } from "./productService";
-import { UserWishsService } from "./userWishsService";
 import { productEntity } from "../../core/models/productEntity";
 
 @Injectable({

@@ -16,7 +16,6 @@ export class BasketComponent implements OnInit, OnDestroy {
   productsTab$ = new BehaviorSubject<productEntity[]>([]);
   private picture: string[] = ['assets/background/basket-1920px.jpeg'];
   basketLength = 0;
-  private sub: Subscription = new Subscription();
   private sub1: Subscription = new Subscription();
   public productsWithQuantities$!: Observable<ProductWithQuantity[]>;
   private screenSizeSub = new Subscription();
@@ -56,7 +55,6 @@ export class BasketComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
     this.sub1.unsubscribe();
     this.screenSizeSub.unsubscribe();
   }

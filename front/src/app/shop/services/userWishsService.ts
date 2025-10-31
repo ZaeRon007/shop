@@ -15,11 +15,12 @@ export class UserWishsService implements OnDestroy {
 
     private sub: Subscription = new Subscription();
     private sub1: Subscription = new Subscription();
+    private sub2: Subscription = new Subscription();
 
     constructor(private http: HttpClient) { }
 
     public loadUserWishs(): void {
-        this.http.get<userWishsEntity[]>(`${environment.apiUrl}shop/wishs`).subscribe({
+        this.sub2 = this.http.get<userWishsEntity[]>(`${environment.apiUrl}shop/wishs`).subscribe({
             next: (wishs) => this.wishsSubject.next(wishs),
             error: (err) => console.error('Erreur de chargement des souhaits', err)
         });
@@ -58,5 +59,6 @@ export class UserWishsService implements OnDestroy {
     ngOnDestroy(): void {
         this.sub.unsubscribe();
         this.sub1.unsubscribe();
+        this.sub2.unsubscribe();
     }
 }

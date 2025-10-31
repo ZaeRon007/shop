@@ -15,7 +15,6 @@ export class UserBasketService implements OnDestroy {
     private sub: Subscription = new Subscription();
     private sub1: Subscription = new Subscription();
     private sub2: Subscription = new Subscription();
-    private sub3: Subscription = new Subscription();
 
     constructor(private http: HttpClient) {
 
@@ -25,7 +24,6 @@ export class UserBasketService implements OnDestroy {
         this.sub.unsubscribe();
         this.sub1.unsubscribe();
         this.sub2.unsubscribe();
-        this.sub3.unsubscribe();
     }
 
     public getUserBasket(): Observable<userBasketEntity[]> {
