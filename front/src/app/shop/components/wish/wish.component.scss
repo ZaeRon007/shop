@@ -11,7 +11,6 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        // object-fit: cover;
     }
 
     .container {
@@ -23,8 +22,10 @@
 
         .main-div {
             width: 95%;
-            position: relative;
-            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+
 
             .centerDiv {
                 display: flex;
@@ -49,7 +50,7 @@
                 .list {
                     flex-wrap: wrap;
                     display: flex;
-                    // flex-direction: column;
+                    justify-content: center;
                     width: 900px;
 
                     .arrow {
