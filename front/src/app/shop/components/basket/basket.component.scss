@@ -2,23 +2,29 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    // overflow: hidden;
+    overflow: visible;
 
     .submarine {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        position: absolute;
         z-index: -1;
     }
 
     .container {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        position: relative;
+        min-height: 100vh;
+        overflow-y: auto;
 
         .main-div {
             width: 95%;
-            margin-left: -2.5%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
 
             .centerDiv {
                 display: flex;
@@ -26,97 +32,101 @@
                 align-items: center;
                 align-self: flex-start;
 
+
+                h1 {
+                    font-size: 2.5rem;
+                }
+
+                p {
+                    color: black;
+                    font-size: 1.7rem;
+                }
+
                 .list {
                     display: flex;
                     flex-direction: column;
+                    justify-content: center;
+                    width: 880px;
+                    gap: 5px;
 
                     mat-card {
-                        height: 150px;
-                    }
-                }
-
-                .gap {
-                    gap: 10px;
-                }
-
-                .card {
-                    display: flex;
-                    flex-direction: column;
-                    height: auto;
-                    width: 340px;
-
-                    .row {
                         display: flex;
                         flex-direction: row;
-                        gap: 5px;
                         justify-content: space-between;
-                        margin-top: 5px;
+                        align-items: center;
+                        height: 150px;
 
-                        .column {
-                            display: flex;
-                            flex-direction: column;
+                        mat-icon {
+                            margin-right: 15px;
                         }
+                    }
 
-                        .margin-left {
+                    .card {
+
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        h2 {
+                            width: 280px;
                             margin-left: 15px;
+                            color: black;
                         }
 
-                        img {
-                            height: 120px;
-                            width: 120px;
-                            margin: auto 10px auto 10px;
+                        h2,
+                        p {
+                            font-size: 1.7rem;
                         }
 
-                        .height {
-                            height: 40px;
-                        }
-
-                        .align-items {
+                        mat-card-title {
+                            display: flex;
                             align-items: center;
+                            height: 50px;
                         }
+
+                        mat-card-content {
+                            display: flex;
+                            flex-direction: row;
+                            padding: 0;
+
+                            mat-icon {
+                                margin-right: 15px;
+                            }
+                        }
+
+                        .inventoryStatus {
+                            width: 170px;
+                            justify-content: space-between;
+                        }
+
+                        .quantityInBasket {
+                            width: 210px;
+                        }
+
+                        .inventoryStatus,
+                        .quantityInBasket {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            height: 50px;
+                        }
+
+
+                        .marginAuto {
+                            margin: auto;
+                        }
+
                     }
 
-                    .mat-mdc-card-title {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 50px;
-                    }
-
-                    .smallButton {
-                        height: 20px;
-                        width: 20px;
-                        padding: 0;
-                        border-radius: 0;
-                        align-items: center;
-                        justify-content: center;
-                        margin-top: auto;
-                        margin-bottom: auto;
-                    }
-
-                    .marginAuto {
-                        margin: auto;
-                    }
-
-                    .center {
-                        display: flex;
-                        justify-content: center;
-                    }
-
-                    mat-icon {
-                        margin-top: auto;
-                        margin-bottom: auto;
-                        z-index: 1;
-                    }
-
-                    .negativ-margin-left {
-                        margin-left: -15px;
+                    img {
+                        height: 120px;
+                        width: 120px;
+                        margin: auto 10px auto 10px;
+                        border: 1px solid black;
                     }
                 }
 
-                .mdc-button {
-                    min-width: 0;
-                }
 
                 .green {
                     color: green;
@@ -140,6 +150,89 @@
 
                 .lightGrey {
                     color: lightgrey;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 950px) {
+    .body .container .main-div .centerDiv {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .list {
+            width: 650px;
+
+            .card {
+
+                p,
+                h2 {
+                    font-size: 1.5rem;
+                }
+
+                h2 {
+                    width: 200px;
+                }
+
+                mat-card-content {
+                    flex-direction: column;
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 450px) {
+
+    .body .container .main-div .centerDiv {
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .list {
+            width: 360px;
+
+            mat-card img {
+                margin-right: 0;
+                margin-left: 0;
+            }
+
+            mat-card mat-icon {
+                margin-right: 10px;
+            }
+
+            .card {
+                flex-direction: column;
+
+                h2,
+                p {
+                    font-size: 1.3rem;
+                }
+
+                h2 {
+                    width: 180px;
+                }
+
+                mat-card-content {
+                    flex-direction: column;
+                    width: 180px;
+                }
+
+                h2,
+                mat-card-content {
+                    margin-left: 10px;
+                }
+
+                .inventoryStatus {
+                    width: 150px;
+                }
+
+                .quantityInBasket {
+                    width: 190px;
                 }
             }
         }
