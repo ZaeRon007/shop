@@ -5,7 +5,7 @@ import { UserBasketService } from '../../services/userBasketService';
 import { UserWishsService } from '../../services/userWishsService';
 import { ProductWithQuantity } from '../../../core/models/ProductWithQuantity';
 import { GlobalService } from '../../services/globalService';
-import { userService } from '../../services/userService';
+import { pictureSizeService } from '../../services/pictureSizeService';
 
 @Component({
   selector: 'app-products',
@@ -18,10 +18,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
   productsTab$ = new BehaviorSubject<productEntity[]>([]);
   public productsWithQuantities$!: Observable<ProductWithQuantity[]>;
   public isAdmin: boolean = false;
+  currentImagePath = '';
+  private screenSizeSub = new Subscription();
+  private picture: string[] = ['assets/background/commerce-1920px.jpeg'];
 
   constructor(private globalService: GlobalService,
     private basketService: UserBasketService,
-    private wishsService: UserWishsService) {
+    private wishsService: UserWishsService,
+    private pictureService: pictureSizeService) {
+      pictureService.setImagesTab(this.picture);
   }
 
   ngOnInit(): void {
@@ -33,6 +38,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.sub2 = this.wishsService.getUserWishs().subscribe();
 
     this.productsWithQuantities$ = this.globalService.Init();
+
+    this.screenSizeSub = this.pictureService.screenSize$.subscribe(() => {
+      this.currentImagePath = this.pictureService.currentStaticImage();
+    })
   }
 
   isInWishList(product_id: number): boolean {
@@ -62,5 +71,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();
+    this.screenSizeSub.unsubscribe();
   }
 }

@@ -1,71 +1,77 @@
-<app-full-header></app-full-header>
-<div class="container">
-    <div class="app-side-nav">
-        <app-side-nav></app-side-nav>
-    </div>
+<div class="body">
+    <img class="submarine" [src]="currentImagePath" alt="background" />
+
+    <app-full-header></app-full-header>
     
-    <div class="main-div">
-        <div>
-            <h1>Liste des produits</h1>
+    <div class="container">
+        <div class="app-side-nav">
+            <app-side-nav></app-side-nav>
         </div>
-        <div class="wrap">
-            <ng-container *ngIf="productsWithQuantities$ | async as products">
-                <mat-card *ngFor="let product of products" class="card">
-            
-                    <mat-icon *ngIf="!isInWishList(product.id)" class="align_right lightGrey"
-                        (click)="addToWishs(product.id)">featured_play_list
-                    </mat-icon>
-                    <mat-icon *ngIf="isInWishList(product.id)" class="align_right like"
-                        (click)="removeFromWishs(product.id)">featured_play_list
-                    </mat-icon>
-            
-                    
-                    <mat-card-title>
-                        <h3 class="center">{{product.name}}</h3>
-                    </mat-card-title>
-                    <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
-                    <mat-card-subtitle>
-                        <p class="justify-text">{{product.description}}</p>
-                    </mat-card-subtitle>
-                    <mat-card-content>
-                        <div class="row smallGap center">
-                            <div class="row">
-                                <p>{{product.rating}}</p>
-                                <mat-icon class="yellow">star_half</mat-icon>
+
+        <div class="main-div">
+            <div>
+                <h1>Liste des produits</h1>
+            </div>
+            <div class="wrap">
+                <ng-container *ngIf="productsWithQuantities$ | async as products">
+                    <mat-card *ngFor="let product of products" class="card">
+
+                        <mat-icon *ngIf="!isInWishList(product.id)" class="align_right lightGrey"
+                            (click)="addToWishs(product.id)">featured_play_list
+                        </mat-icon>
+                        <mat-icon *ngIf="isInWishList(product.id)" class="align_right like"
+                            (click)="removeFromWishs(product.id)">featured_play_list
+                        </mat-icon>
+
+
+                        <mat-card-title>
+                            <h3 class="center">{{product.name}}</h3>
+                        </mat-card-title>
+                        <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
+                        <mat-card-subtitle>
+                            <p class="justify-text">{{product.description}}</p>
+                        </mat-card-subtitle>
+                        <mat-card-content>
+                            <div class="row smallGap center">
+                                <div class="row">
+                                    <p>{{product.rating}}</p>
+                                    <mat-icon class="yellow">star_half</mat-icon>
+                                </div>
+
+                                <div class="row">
+                                    <p>{{product.inventoryStatus}}</p>
+                                    <mat-icon *ngIf="product.inventoryStatus === 'INSTOCK'"
+                                        class="green">check_circle</mat-icon>
+                                    <mat-icon *ngIf="product.inventoryStatus === 'OUTOFSTOCK'"
+                                        class="red">error</mat-icon>
+                                    <mat-icon *ngIf="product.inventoryStatus === 'LOWSTOCK'"
+                                        class="orange">warning</mat-icon>
+                                </div>
                             </div>
-            
-                            <div class="row">
-                                <p>{{product.inventoryStatus}}</p>
-                                <mat-icon *ngIf="product.inventoryStatus === 'INSTOCK'"
-                                    class="green">check_circle</mat-icon>
-                                <mat-icon *ngIf="product.inventoryStatus === 'OUTOFSTOCK'" class="red">error</mat-icon>
-                                <mat-icon *ngIf="product.inventoryStatus === 'LOWSTOCK'" class="orange">warning</mat-icon>
+                            <div class="row center" *ngIf="product.quantityInBasket > 0;else singleButton">
+                                <p>Qty:</p>
+                                <button mat-icon-button class="smallButton"
+                                    (click)="decreaseAmount(product.id, product.quantityInBasket)">
+                                    <mat-icon class="marginAuto">remove</mat-icon>
+                                </button>
+                                <p>{{product.quantityInBasket}}</p>
+                                <button mat-icon-button class="smallButton"
+                                    (click)="increaseAmount(product.id, product.quantityInBasket)">
+                                    <mat-icon class="marginAuto">add</mat-icon>
+                                </button>
+                                <p>{{product.price}}</p>
+                                <mat-icon>euro_symbol</mat-icon>
                             </div>
-                        </div>
-                        <div class="row center" *ngIf="product.quantityInBasket > 0;else singleButton">
-                            <p>Qty:</p>
-                            <button mat-icon-button class="smallButton"
-                                (click)="decreaseAmount(product.id, product.quantityInBasket)">
-                                <mat-icon class="marginAuto">remove</mat-icon>
-                            </button>
-                            <p>{{product.quantityInBasket}}</p>
-                            <button mat-icon-button class="smallButton"
-                                (click)="increaseAmount(product.id, product.quantityInBasket)">
-                                <mat-icon class="marginAuto">add</mat-icon>
-                            </button>
-                            <p>{{product.price}}</p>
-                            <mat-icon>euro_symbol</mat-icon>
-                        </div>
-                        <ng-template #singleButton >
-                            <div class="row center">
-                                <button mat-flat-button class="marginVertical"
-                                    (click)="addToCart(product.id, 1)"
-                                    [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">Acheter</button>
-                            </div>
-                        </ng-template>
-                    </mat-card-content>
-                </mat-card>
-            </ng-container>
+                            <ng-template #singleButton>
+                                <div class="row center">
+                                    <button mat-flat-button class="marginVertical" (click)="addToCart(product.id, 1)"
+                                        [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">Acheter</button>
+                                </div>
+                            </ng-template>
+                        </mat-card-content>
+                    </mat-card>
+                </ng-container>
+            </div>
         </div>
     </div>
 </div>
