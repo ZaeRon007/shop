@@ -26,6 +26,10 @@
             left: 50%;
             transform: translateX(-50%);
 
+            mat-icon {
+                color: black;
+            }
+
             .centerDiv {
                 display: flex;
                 flex-direction: column;
