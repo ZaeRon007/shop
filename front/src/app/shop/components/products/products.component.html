@@ -64,7 +64,7 @@
                             </div>
                             <ng-template #singleButton>
                                 <div class="row center">
-                                    <button mat-flat-button class="marginVertical" (click)="addToCart(product.id, 1)"
+                                    <button mat-flat-button (click)="addToCart(product.id, 1)"
                                         [disabled]="product.inventoryStatus === 'OUTOFSTOCK'">Acheter</button>
                                 </div>
                             </ng-template>
