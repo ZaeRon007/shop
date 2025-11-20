@@ -10,13 +10,13 @@
 }">
     <div *ngIf="showMenu() || (screenSize$ | async)" class="choicesMenu">
         <div class="max-width margin-left">
-            <button mat-raised-button [routerLink]="['/shop/home']">Accueil
+            <button mat-button [routerLink]="['/shop/home']">Accueil
                 <mat-icon>store</mat-icon>
             </button>
-            <button mat-raised-button [routerLink]="['/shop/products']">Produits
+            <button mat-button [routerLink]="['/shop/products']">Produits
                 <mat-icon>vertical_split</mat-icon>
             </button>
-            <button mat-raised-button [routerLink]="['/shop/contact']">Contact
+            <button mat-button [routerLink]="['/shop/contact']">Contact
                 <mat-icon>contact_support</mat-icon>
             </button>
         </div>
