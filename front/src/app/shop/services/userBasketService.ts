@@ -9,12 +9,13 @@ import { environment } from "../../../environments/environment";
     providedIn: 'root'
 })
 export class UserBasketService implements OnDestroy {
-    public basketSubject = new BehaviorSubject<userBasketEntity[]>([new userBasketEntity])
+    public basketSubject = new BehaviorSubject<userBasketEntity[]>([])
     public basket$ = this.basketSubject.asObservable();
 
     private sub: Subscription = new Subscription();
     private sub1: Subscription = new Subscription();
     private sub2: Subscription = new Subscription();
+    private sub3: Subscription = new Subscription();
 
     constructor(private http: HttpClient) {
 
@@ -24,15 +25,20 @@ export class UserBasketService implements OnDestroy {
         this.sub.unsubscribe();
         this.sub1.unsubscribe();
         this.sub2.unsubscribe();
+        this.sub3.unsubscribe();
+    }
+
+    public loadUserBasket() {
+        this.sub3 = this.http.get<userBasketEntity[]>(`${environment.apiUrl}shop/basket`).subscribe({
+            next: (item) => this.basketSubject.next(item),
+            error: (err) => console.error('Erreur de chargement du panier', err)
+
+        });
     }
 
     public getUserBasket(): Observable<userBasketEntity[]> {
-        return this.http.get<userBasketEntity[]>(`${environment.apiUrl}shop/basket`).pipe(
-            tap((product: userBasketEntity[]) => {
-                this.basketSubject.next(product)
-            })
-        );
-    }
+            return this.basket$;
+        }
 
     public addToCart(id: number, quantity: number) {
         let cart: userBasketAddDto = new userBasketAddDto();
