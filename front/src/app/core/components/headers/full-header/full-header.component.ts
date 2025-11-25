@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
-import { count, map, Observable, Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { UserBasketService } from '../../../../shop/services/userBasketService';
 import { UserWishsService } from '../../../../shop/services/userWishsService';
 
@@ -15,8 +14,7 @@ export class FullHeaderComponent implements OnInit, OnDestroy {
   private sub1: Subscription = new Subscription();
   private sub2: Subscription = new Subscription();
 
-  constructor(private authService: AuthService,
-    private wishsService: UserWishsService,
+  constructor(private wishsService: UserWishsService,
     private basketService: UserBasketService) {
 
   }
@@ -26,7 +24,7 @@ export class FullHeaderComponent implements OnInit, OnDestroy {
     this.sub2 = this.basketService.basket$.pipe(map(list => list.length)).subscribe(count => this.cartSize = count);
 
     this.wishsService.loadUserWishs();
-    this.basketService.getUserBasket();
+    this.basketService.loadUserBasket();
   }
 
   ngOnDestroy(): void {
