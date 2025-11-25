@@ -11,7 +11,6 @@ import { productEntity } from "../../core/models/productEntity";
 export class GlobalService implements OnDestroy {
     private productsTab$ = new BehaviorSubject<productEntity[]>([]);
     private sub: Subscription = new Subscription();
-    private sub1: Subscription = new Subscription();
 
 
 
@@ -29,7 +28,7 @@ export class GlobalService implements OnDestroy {
         ).subscribe();
 
         // load user basket state
-        this.sub1 = this.basketService.getUserBasket().subscribe();
+        this.basketService.loadUserBasket();
 
         return combineLatest([
             this.productsTab$,
@@ -48,6 +47,5 @@ export class GlobalService implements OnDestroy {
 
     ngOnDestroy(): void {
         this.sub.unsubscribe();
-        this.sub1.unsubscribe();
     }
 }
