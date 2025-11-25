@@ -14,10 +14,9 @@
                 <h1>Liste d'envie</h1>
 
                 <div class="list gap">
-                    <ng-container>
+                    <ng-container *ngFor="let product of products">
                         
-                        <mat-card *ngFor="let product of products">
-                        
+                        <mat-card>
                             <div class="arrow">
                                 <mat-icon class="red" (click)="deleteFromWishs(product.id)">cancel</mat-icon>
                             </div>
@@ -30,6 +29,7 @@
                             <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
                             </mat-card-content>
                         </mat-card>
+                        
                     </ng-container>
 
                 </div>
