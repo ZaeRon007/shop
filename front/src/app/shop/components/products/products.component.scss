@@ -16,6 +16,9 @@
     .container {
         display: flex;
         flex-direction: row;
+        position: relative;
+        min-height: 89.5vh;
+
     
         .main-div {
             display: flex;
@@ -131,5 +134,18 @@
         
             }
         }
+    }
+}
+
+
+@media (max-width: 950px) {
+    .body .container {
+        min-height: 91vh;
+    }
+}
+
+@media (max-width: 450px) {
+    .body .container {
+        min-height: 90.7vh;
     }
 }
