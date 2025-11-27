@@ -1,13 +1,5 @@
 <mat-icon (click)="showMenu.set(true)" class="hamburgerMenu">menu</mat-icon>
-<div [@openClose]="{
-    value: showMenu(),
-    params: {
-      leaveEnd: '-100%',
-      enterStart: '-100%',
-      hiddenScale: 1,
-      duration: '500ms'
-    }
-}">
+<div [@openClose]="showMenu()">
     <div *ngIf="showMenu() || (screenSize$ | async)" class="choicesMenu">
         <div class="max-width margin-left">
             <button mat-button [routerLink]="['/shop/home']">Accueil

@@ -1,8 +1,8 @@
-import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
-import { slideAnimation } from '../../../../animations/slide.animation';
-import { BehaviorSubject, combineLatest, map, Observable, startWith, Subscription } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Subscription } from 'rxjs';
 import { pictureSizeService } from '../../services/pictureSizeService';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { slideAnimation } from '../../../../animations/slide.animation';
 
 const animationDuration = 300;
 const animationInterval = 10000;
@@ -20,7 +20,8 @@ const animationInterval = 10000;
           leaveEnd: '100%',
           enterStart: '-100%',
           hiddenScale: 1,
-          duration: animationDuration + 'ms'
+          enterDuration: animationDuration + 'ms',
+          leaveDuration: animationDuration + 'ms',
         }
       })
     ])

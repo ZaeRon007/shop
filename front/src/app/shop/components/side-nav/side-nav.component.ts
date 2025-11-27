@@ -1,9 +1,11 @@
-import { animate, state, style, transition, trigger, useAnimation } from '@angular/animations';
-import { Component, HostListener, signal, Signal } from '@angular/core';
+import { transition, trigger, useAnimation } from '@angular/animations';
+import { Component, HostListener, signal } from '@angular/core';
 import { slideAnimation } from '../../../../animations/slide.animation';
 import { BehaviorSubject } from 'rxjs';
 
 const width = 1190;
+const enterAnimationDuration = 500;
+const leaveAnimationDuration = 250;
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -12,7 +14,15 @@ const width = 1190;
     trigger('openClose', [
       transition('* => *', [
         useAnimation(slideAnimation)
-      ])
+      ], {
+        params: {
+          leaveEnd: '-100%',
+          enterStart: '-100%',
+          hiddenScale: 1,
+          enterDuration: enterAnimationDuration + 'ms',
+          leaveDuration: leaveAnimationDuration + 'ms',
+        }
+      })
     ])
   ]
 })
