@@ -1,18 +1,24 @@
 .body {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
+    overflow: visible;
 
-    img {
+
+    .submarine {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        position: absolute;
         z-index: -1;
     }
 
     .container {
         display: flex;
         flex-direction: row;
+        position: relative;
+        min-height: 89.5vh;
 
         .center {
             display: unset;
@@ -79,6 +85,10 @@
     .body .container .center .account-content .account-form button {
         font-size: 1rem;
     }
+
+    .body .container {
+        min-height: 91vh;
+    }
 }
 
 @media (max-width: 450px) {
@@ -90,5 +100,9 @@
     .body .container .center .account-content .account-form mat-form-field input,
     .body .container .center .account-content .account-form button {
         font-size: 1rem;
+    }
+
+    .body .container {
+        min-height: 90.7vh;
     }
 }

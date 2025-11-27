@@ -17,7 +17,7 @@
         display: flex;
         flex-direction: row;
         position: relative;
-        min-height: 100vh;
+        min-height: 89.5vh;
         overflow-y: auto;
 
         .main-div {
@@ -139,6 +139,10 @@
     .body .container .main-div .centerDiv .list {
         width: 600px;
     }
+
+    .body .container {
+        min-height: 91vh;
+    }
     
 }
 
@@ -153,5 +157,9 @@
 
     .body .container .main-div .centerDiv .list {
         width: 300px;
+    }
+
+    .body .container {
+        min-height: 90.7vh;
     }
 }

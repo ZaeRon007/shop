@@ -1,13 +1,15 @@
 .body {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    
-    img {
+
+    .submarine {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        position: absolute;
         z-index: -1;
     }
 
@@ -17,60 +19,74 @@
         z-index: 1;
     }
 
-    .row {
-        display: flex;
-        flex-direction: row;
-        height: 100%;
+    .container {
+        position: relative;
+        min-height: 89.5vh;
 
-        .main-div {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 95%;
+        .row {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row;
+            height: 100%;
 
-            h1,
-            p {
+            .main-div {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 95%;
                 display: flex;
-                justify-content: center;
-                text-align: center;
-            }
+                flex-direction: column;
+                align-items: center;
 
-            h1 {
-                font-size: 2.5rem;
-            }
-            p {
-                font-size: 1.7rem;
-                font-weight: 500;
-            }
-            
-            button {
-                font-size: 1.7rem;
+                h1,
+                p {
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+                }
+
+                h1 {
+                    font-size: 2.5rem;
+                }
+
+                p {
+                    font-size: 1.7rem;
+                    font-weight: 500;
+                }
+
+                button {
+                    font-size: 1.7rem;
+                }
             }
         }
     }
 }
 
-@media (max-width: 950px){
-    .body .row .main-div h1 {
+@media (max-width: 950px) {
+    .body .container .row .main-div h1 {
         font-size: 2rem;
     }
 
-    .body .row .main-div p,
-    .body .row .main-div button {
+    .body .container .row .main-div p,
+    .body .container .row .main-div button {
         font-size: 1.5rem;
+    }
+
+    .body .container {
+        min-height: 91vh;
     }
 }
 
-@media (max-width: 450px){
-    .body .row .main-div h1 {
+@media (max-width: 450px) {
+    .body .container .row .main-div h1 {
         font-size: 1.8rem;
     }
 
-    .body .row .main-div p,
-    .body .row .main-div button {
+    .body .container .row .main-div p,
+    .body .container .row .main-div button {
         font-size: 1.3rem;
+    }
+
+    .body .container {
+        min-height: 90.7vh;
     }
 }

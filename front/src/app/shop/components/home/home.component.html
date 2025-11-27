@@ -1,20 +1,19 @@
-<div [@slideAnimation]="animationState()"
-    class="body">
-  <img *ngIf="animationState()" 
-      [src]="currentImagePath"  
-      alt="background" />
+<div [@slideAnimation]="animationState()" class="body">
+  <img class="submarine" *ngIf="animationState()" [src]="currentImagePath" alt="background" />
   <app-full-header></app-full-header>
-  <div class="row">
-    <!-- first block -->
-    <div class="app-side-nav">
-      <app-side-nav></app-side-nav>
-    </div>
+  <div class="container">
+    <div class="row">
+      <!-- first block -->
+      <div class="app-side-nav">
+        <app-side-nav></app-side-nav>
+      </div>
 
-    <!-- second block -->
-    <div class="main-div">
-      <h1>Bienvenue sur {{appTitle}}</h1>
-      <p>Consultez des milliers d'objets parmis notre boutique.</p>
-      <button mat-flat-button [routerLink]="['/shop/products']">Commencer</button>
+      <!-- second block -->
+      <div class="main-div">
+        <h1>Bienvenue sur {{appTitle}}</h1>
+        <p>Consultez des milliers d'objets parmis notre boutique.</p>
+        <button mat-flat-button [routerLink]="['/shop/products']">Commencer</button>
+      </div>
     </div>
   </div>
 </div>

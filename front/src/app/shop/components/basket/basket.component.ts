@@ -3,9 +3,9 @@ import { UserBasketService } from '../../services/userBasketService';
 import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
 import { productEntity } from '../../../core/models/productEntity';
 import { ProductWithQuantity } from '../../../core/models/ProductWithQuantity';
-import { GlobalService } from '../../services/globalService';
 import { userBasketEntity } from '../../../core/models/userBasketEntity';
 import { pictureSizeService } from '../../services/pictureSizeService';
+import { ProductService } from '../../services/productService';
 
 @Component({
   selector: 'app-basket',
@@ -16,20 +16,20 @@ export class BasketComponent implements OnInit, OnDestroy {
   productsTab$ = new BehaviorSubject<productEntity[]>([]);
   private picture: string[] = ['assets/background/basket-1920px.jpeg'];
   basketLength = 0;
-  private sub1: Subscription = new Subscription();
+  private basketSubscription: Subscription = new Subscription();
   public productsWithQuantities$!: Observable<ProductWithQuantity[]>;
   private screenSizeSub = new Subscription();
   currentImagePath = '';
 
   constructor(private basketService: UserBasketService,
-    private globalService: GlobalService,
-    private pictureService: pictureSizeService) {
+    private pictureService: pictureSizeService,
+    private productService: ProductService,) {
       pictureService.setImagesTab(this.picture);
   }
 
   ngOnInit(): void {
     // load user basket state
-    this.sub1 = this.basketService.basket$.subscribe((basket: userBasketEntity[]) => {
+    this.basketSubscription = this.basketService.basket$.subscribe((basket: userBasketEntity[]) => {
       this.basketLength = basket.length;
     });
 
@@ -38,7 +38,7 @@ export class BasketComponent implements OnInit, OnDestroy {
     })
 
     // combine latest updates and insert item quantity into productsWithQuantities
-    this.productsWithQuantities$ = this.globalService.Init();
+    this.productsWithQuantities$ = this.productService.initProductList();
 
   }
 
@@ -55,7 +55,7 @@ export class BasketComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub1.unsubscribe();
+    this.basketSubscription.unsubscribe();
     this.screenSizeSub.unsubscribe();
   }
 
