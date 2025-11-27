@@ -9,25 +9,42 @@
         position: absolute;
         z-index: -1;
     }
+    
+    .title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        height: 100%;
+    }
+
+    button {
+        font-size: 1.7rem;
+    }
 }
 
-.title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    height: 100%;
-}
 
 @media (max-width: 950px) {
-    h1 {
-        font-size: 1.5em;
+    .body {
+        h1 {
+            font-size: 2rem;
+        }
+
+        button {
+            font-size: 1.5rem;
+        }
     }
 }
 
 @media (max-width: 450px) {
-    h1 {
-        font-size: 1em;
+    .body {
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        button {
+            font-size: 1.3rem;
+        }
     }
 }
