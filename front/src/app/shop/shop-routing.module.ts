@@ -8,12 +8,12 @@ import { HomeComponent } from "./components/home/home.component";
 import { AccountComponent } from "./components/account/account.component";
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'products', component: ProductsComponent},
-  { path: 'basket', component: BasketComponent},
-  { path: 'wish', component: WishComponent},
-  { path: 'contact', component: ContactComponent},
-  { path: 'account', component: AccountComponent}
+  { path: 'home', component: HomeComponent, data: {animation: 'HomePage'} },
+  { path: 'products', component: ProductsComponent, data: {animation: 'ProductsPage'}},
+  { path: 'basket', component: BasketComponent, data: {animation: 'basketPage'}},
+  { path: 'wish', component: WishComponent, data: {animation: 'WishPage'}},
+  { path: 'contact', component: ContactComponent, data: {animation: 'ContactPage'}},
+  { path: 'account', component: AccountComponent, data: {animation: 'AccountPage'}}
 
 ]
 
