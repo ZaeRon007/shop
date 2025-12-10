@@ -16,16 +16,28 @@ export class userService implements OnDestroy{
         this.checkAdmin();
     }
 
+    /**
+     * This function allow to get username
+     * @returns an observable of username
+     */
     private getUsername(): Observable<usernameDto> {
         return this.http.get<usernameDto>(`${environment.apiUrl}shop/basket/me`);
     }
 
+    /**
+     * This function allow to verify if user account is admin
+     * @returns a boolean
+     */
     private checkAdmin(): void{
         this.sub = this.getUsername().subscribe(response => {
             this.isAdmin$.next(response.username === this.admin);
         });
     }
 
+    /**
+     * This function allow to get an observable of isAdmin behavior subject
+     * @returns an Observable<boolean>
+     */
     public isAccountAdmin$(): Observable<boolean> {
         return this.isAdmin$.asObservable();
     }

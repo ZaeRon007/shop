@@ -28,6 +28,9 @@ export class UserBasketService implements OnDestroy {
         this.sub3.unsubscribe();
     }
 
+    /**
+     * This function allow to store user basket
+     */
     public loadUserBasket() {
         this.sub3 = this.http.get<userBasketEntity[]>(`${environment.apiUrl}shop/basket`).subscribe({
             next: (item) => this.basketSubject.next(item),
@@ -36,10 +39,19 @@ export class UserBasketService implements OnDestroy {
         });
     }
 
+    /**
+     * This function allow to get user basket 
+     * @returns 
+     */
     public getUserBasket(): Observable<userBasketEntity[]> {
-            return this.basket$;
-        }
+        return this.basket$;
+    }
 
+    /**
+     * This function allow to add a product to user basket as a user
+     * @param id 
+     * @param quantity 
+     */
     public addToCart(id: number, quantity: number) {
         let cart: userBasketAddDto = new userBasketAddDto();
         cart.quantity = quantity;
@@ -54,6 +66,11 @@ export class UserBasketService implements OnDestroy {
         this.basketSubject.next(updatedBasket);
     }
 
+    /**
+     * This function allow to increase product quantity in user basket
+     * @param id 
+     * @param quantity 
+     */
     public increaseAmount(id: number, quantity: number) {
         let item: userBasketAddDto = new userBasketAddDto();
         item.quantity = quantity + 1;
@@ -68,6 +85,11 @@ export class UserBasketService implements OnDestroy {
         this.basketSubject.next(updatedBasket);
     }
 
+    /**
+     * This function allow to decrease a product quantity in user basket
+     * @param id 
+     * @param quantity 
+     */
     public decreaseAmount(id: number, quantity: number) {
         let item: userBasketAddDto = new userBasketAddDto();
         if (quantity - 1 == 0) {
@@ -90,24 +112,43 @@ export class UserBasketService implements OnDestroy {
         }
     }
 
-    public addToBasket(product_id: number, productToAdd: userBasketAddDto): void {
+    /**
+     * This function allow to add a product in basket 
+     * @param product_id 
+     * @param productToAdd 
+     */
+    private addToBasket(product_id: number, productToAdd: userBasketAddDto): void {
         this.sub = this.http.post<userBasketAddDto>(`${environment.apiUrl}shop/basket/${product_id}`, productToAdd).subscribe();
     }
 
-    public patchFrombasket(product_id: number, productToAdd: userBasketAddDto): void {
+    /**
+     * This function allow to update a product quantity in basket 
+     * @param product_id 
+     * @param productToAdd 
+     */
+    private patchFrombasket(product_id: number, productToAdd: userBasketAddDto): void {
         this.sub1 = this.http.patch<userBasketAddDto>(`${environment.apiUrl}shop/basket/${product_id}`, productToAdd).subscribe();
     }
 
-    public removeFromBasket(id: number) {
+    /**
+     * This function allow to remove a product from user basket
+     * @param id 
+     */
+    private removeFromBasket(id: number) {
         const updatedBasket = this.basketSubject.getValue().filter(item => item.productId != id);
         this.basketSubject.next(updatedBasket);
-        
+
         this.sub2 = this.http.delete(`${environment.apiUrl}shop/basket/${id}`)
-        .subscribe({
-            error: (err) => console.error('Erreur de suppression du serveur', err)
-        });
+            .subscribe({
+                error: (err) => console.error('Erreur de suppression du serveur', err)
+            });
     }
 
+    /**
+     * This function allow to get item amount in user basket
+     * @param product_id 
+     * @returns a number
+     */
     public getItemAmountInUserBasket(product_id: number) {
         return this.http.get<userBasketAddDto>(`${environment.apiUrl}shop/basket${product_id}`);
     }

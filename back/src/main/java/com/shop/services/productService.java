@@ -16,6 +16,11 @@ public class productService {
     @Autowired
     userService userService;
 
+    /**
+     * This function allow to create a new product
+     * @param : the 'product' informations
+     * @return : the new product as productEntity
+     */
     public productEntity create(productDto product) {
         if (userService.canActivate()) {
             productEntity productToAdd = new productEntity();
@@ -29,8 +34,13 @@ public class productService {
             return null;
     }
 
+    /**
+     * This function allow to randomize a product quantity and it's rating
+     * @param : the 'product' to modify
+     * @return : the new product as productEntity
+     */
     private productEntity randomize(productEntity product) {
-        double randomQuantity = Math.random() * 300;// nombre aléatoire entre 0 et 299
+        double randomQuantity = Math.random() * 300;
         product.setQuantity((int) randomQuantity);
         product.setInternalReference("REF-123-456");
         product.setShellId(15);
@@ -41,20 +51,34 @@ public class productService {
         else
             product.setInventoryStatus(productEntity.inventoryStatusEnumeration.INSTOCK);
 
-        double randomRating = Math.random() * 15;// nombre aléatoire entre 0 et 15
+        double randomRating = Math.random() * 15;
         product.setRating((int) randomRating);
 
         return product;
     }
 
+    /**
+     * This function allow to get all products
+     * @return : all products as a Iterable<productEntity>
+     */
     public Iterable<productEntity> getProducts() {
         return productRepository.findAll();
     }
 
+    /**
+     * This function allow to get a product
+     * @param : the 'product_id' to get
+     * @return : the product as productEntity
+     */
     public productEntity getProduct(String id) {
         return productRepository.findById(Integer.parseInt(id));
     }
 
+    /**
+     * This function allow to modify a product
+     * @param : the 'product_id' and it's new informations as productDto
+     * @return : the new product as productEntity
+     */
     public productEntity patchProduct(String id, productDto product) {
         if (userService.canActivate()) {
 
@@ -74,6 +98,10 @@ public class productService {
             return null;
     }
 
+    /**
+     * This function allow to delete a product from database
+     * @param : the 'product_id' to delete
+     */
     public void deleteProduct(String id) {
         if (userService.canActivate()) {
             productRepository.deleteById(Integer.parseInt(id));

@@ -17,15 +17,29 @@ export class pictureSizeService implements OnDestroy{
           });
     }
 
+    /**
+     * This function allow to get the adapted picture from pictures tab
+     * @param index 
+     * @returns a string of the target picture
+     */
     currentImageFromTab(index: number): string {
         const picture = this.images[index];
         return this.calculateSize(picture)
     }
 
+    /**
+     * This function allow to get the current static picture
+     * @returns the target string picture
+     */
     currentStaticImage(): string {
         return this.calculateSize(this.images[0]);
     }
 
+    /**
+     * This function allow to calculate picture size for responsiveness
+     * @param name 
+     * @returns the target picture 
+     */
     private calculateSize(name: string): string {
         const size = this.screenSizeSubject$.value;
 
@@ -42,6 +56,10 @@ export class pictureSizeService implements OnDestroy{
         }
     }
 
+    /**
+     * This function allow to set the tab of pictures
+     * @param img 
+     */
     setImagesTab(img: string[]) {
         this.images = img;
     }

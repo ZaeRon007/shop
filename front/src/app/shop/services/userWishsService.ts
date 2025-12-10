@@ -19,6 +19,10 @@ export class UserWishsService implements OnDestroy {
 
     constructor(private http: HttpClient) { }
 
+    /**
+     * This function allow to store all user wishs
+     * @return : a tab of user wishs
+     */
     public loadUserWishs(): void {
         this.sub2 = this.http.get<userWishsEntity[]>(`${environment.apiUrl}shop/wishs`).subscribe({
             next: (wishs) => this.wishsSubject.next(wishs),
@@ -26,10 +30,19 @@ export class UserWishsService implements OnDestroy {
         });
     }
 
+    /**
+     * This function allow to get all user wishs
+     * @return : an observable of wishs Subject
+     */
     public getUserWishs(): Observable<userWishsEntity[]> {
         return this.wishs$;
     }
 
+    /**
+     * This function allow to add a product to user wish list
+     * @param : the 'product_id'
+     * @return : the product profile
+     */
     public addToWishs(productId: number): void {
         const localWish: userWishsEntity = { productId } as userWishsEntity;
 
@@ -42,6 +55,10 @@ export class UserWishsService implements OnDestroy {
             });
     }
 
+    /**
+     * This function allow to remove a product from user wish list
+     * @param : the 'product_id'
+     */
     public removeFromWishs(productId: number): void {
         const updatedWishs = this.wishsSubject.value.filter(w => w.productId !== productId);
         this.wishsSubject.next(updatedWishs);
@@ -52,6 +69,11 @@ export class UserWishsService implements OnDestroy {
             });
     }
 
+    /**
+     * This function allow to get user wish for a specific product
+     * @param : the 'product_id
+     * @return : the product profile
+     */
     public getUserWish(productId: number): Observable<productEntity> {
         return this.http.get<productEntity>(`${environment.apiUrl}products/${productId}`);
     }

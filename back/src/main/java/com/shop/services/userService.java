@@ -100,14 +100,15 @@ public class userService {
     }
 
     /**
-     * Fonction permettant de vérifier que l'utilisateur est bien administrateur
+     * This function allow to verify if user is admin
+     * @return boolean
      */
     public boolean canActivate(){
         return getUsername().equals("admin@admin.com");
     }
 
     /**
-     * Fonction permettant d'obtenir des informations utilisateurs
+     * This function allow to get user informations
      * @return userInfosDto : id + username + firstname + email
      */
     public userInfosDto getUserInfos() {
@@ -117,6 +118,11 @@ public class userService {
         return (userRepository.findByEmail(username)).toUserInfosDto();
     }
 
+    /**
+     * This function update user informations
+     * @param : user informations to update
+     * @return : the new user profile 
+     */
     public userInfosDto putUserInfos(userInfosDto user) {
         userEntity userToAdd = userRepository.findById(user.getId());
         userToAdd.setEmail(user.getEmail());

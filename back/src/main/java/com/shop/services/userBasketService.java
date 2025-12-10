@@ -18,6 +18,11 @@ public class userBasketService {
     @Autowired
     userBasketRepository userBasketRepository;
 
+    /**
+     * This function allow to add a product to user basket list
+     * @param : the 'product_id' to add and it's quantity
+     * @return : the product as userBasketEntity
+     */
     public userBasketEntity addProductToUserBasket(String product_id, userBasketDto userBasketDto)
             throws ParseException {
         userBasketEntity entity = userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id),
@@ -41,6 +46,11 @@ public class userBasketService {
 
     }
 
+    /**
+     * This function allow to modify the product quantity in user basket
+     * @param : the 'product_id' to modify and it's new values as userBasketDto
+     * @return : the product with the new quantity as userbasketEntity
+     */
     public userBasketEntity patchProductFromUserBasket(String product_id, userBasketDto userBasketDto)
             throws NumberFormatException, ParseException {
         userBasketEntity entity = userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id),
@@ -51,21 +61,38 @@ public class userBasketService {
         return entity;
     }
 
+    /**
+     * This function allow to delete a product from user basket
+     * @param : the 'product_id' to delete
+     */
     public void deleteProductFromUserBasket(String product_id) throws NumberFormatException, ParseException {
         userBasketRepository.delete(
                 userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id), userService.getMe()));
     }
 
+    /**
+     * This function allow to get all product from database
+     * @return : all products as userBasketEntity tab
+     */
     public userBasketEntity[] getAllProducts() throws ParseException {
         return userBasketRepository.findByUserId(userService.getMe());
     }
 
+    /**
+     * This function allow to get product's quantity in the user basket
+     * @param : the 'product_id'
+     * @return : the product quantity as userBasketDto
+     */
     public userBasketDto getAmountInUserBasket(String id) throws NumberFormatException, ParseException {
         userBasketDto item = new userBasketDto();
         item.setQuantity(userBasketRepository.findByProductIdAndUserId(Integer.parseInt(id), userService.getMe()).getQuantity());
         return item;
     }
 
+    /**
+     * This function allow to get the connected user username
+     * @return : username
+     */
     public usernameDto getUsername() {
         usernameDto user = new usernameDto();
         user.setUsername(userService.getUsername());
