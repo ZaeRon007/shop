@@ -134,7 +134,7 @@ export class UserBasketService implements OnDestroy {
      * This function allow to remove a product from user basket
      * @param id 
      */
-    private removeFromBasket(id: number) {
+    public removeFromBasket(id: number) {
         const updatedBasket = this.basketSubject.getValue().filter(item => item.productId != id);
         this.basketSubject.next(updatedBasket);
 
