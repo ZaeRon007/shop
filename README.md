@@ -23,7 +23,7 @@ You need to add to path theses folders by editing the .profile file :
 Add the following lines at the end of this file :  
 `#java path`
 
-`export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/"`
+`export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64/"`
 
 `#maven path`
 
