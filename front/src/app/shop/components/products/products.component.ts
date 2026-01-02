@@ -4,8 +4,8 @@ import { productEntity } from '../../../core/models/productEntity';
 import { UserBasketService } from '../../services/userBasketService';
 import { UserWishsService } from '../../services/userWishsService';
 import { ProductWithQuantity } from '../../../core/models/ProductWithQuantity';
-import { GlobalService } from '../../services/globalService';
 import { pictureSizeService } from '../../services/pictureSizeService';
+import { ProductService } from '../../services/productService';
 
 @Component({
   selector: 'app-products',
@@ -22,10 +22,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private screenSizeSub = new Subscription();
   private picture: string[] = ['assets/background/commerce-1920px.jpeg'];
 
-  constructor(private globalService: GlobalService,
-    private basketService: UserBasketService,
+  constructor(private basketService: UserBasketService,
     private wishsService: UserWishsService,
-    private pictureService: pictureSizeService) {
+    private pictureService: pictureSizeService,
+    private productService: ProductService) {
       pictureService.setImagesTab(this.picture);
   }
 
@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     // load user wish list state
     this.sub2 = this.wishsService.getUserWishs().subscribe();
 
-    this.productsWithQuantities$ = this.globalService.Init();
+    this.productsWithQuantities$ = this.productService.initProductList();
 
     this.screenSizeSub = this.pictureService.screenSize$.subscribe(() => {
       this.currentImagePath = this.pictureService.currentStaticImage();
