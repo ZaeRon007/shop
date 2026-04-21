@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   allowCypressEnv: false,
 
   e2e: {
