@@ -5,12 +5,13 @@ import { LandingPageComponent } from "./components/landing-page/landing-page.com
 import { LogInComponent } from "./components/log-in/log-in.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { RegisterComponent } from "./components/register/register.component";
+import { UnAuthGuard } from "./guards/unauth.guard";
 
 const routes: Routes = [
-    { path: '', component: LandingPageComponent},
-    { path: 'auth', component: AuthComponent},
-    { path: 'auth/register', component: RegisterComponent},
-    { path: 'auth/logIn', component: LogInComponent},
+    { path: '', component: LandingPageComponent, canActivate: [UnAuthGuard]},
+    { path: 'auth', component: AuthComponent, canActivate: [UnAuthGuard]},
+    { path: 'auth/register', component: RegisterComponent, canActivate: [UnAuthGuard]},
+    { path: 'auth/logIn', component: LogInComponent, canActivate: [UnAuthGuard]},
     { path: '404', component: NotFoundComponent},
   ]
   

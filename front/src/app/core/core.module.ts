@@ -72,7 +72,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
         AuthGuard,
         UnAuthGuard,
         provideHttpClient(withInterceptors([AuthInterceptor])),
-        // provideAnimationsAsync(),
     ],
 })
 export class CoreModule { }
