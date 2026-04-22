@@ -9,6 +9,7 @@ import { WishComponent } from './components/wish/wish.component';
 import { AccountComponent } from './components/account/account.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { CommonModule } from "@angular/common";
+import { SingleProductComponent } from './components/single-product/single-product.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { CommonModule } from "@angular/common";
         WishComponent,
         AccountComponent,
         SideNavComponent,
+        SingleProductComponent,
     ],
     imports: [
         CommonModule,
