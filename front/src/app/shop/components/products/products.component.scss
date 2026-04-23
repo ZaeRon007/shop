@@ -46,81 +46,13 @@
                 height: auto;
                 background-color: var(--backgroundColor);
 
-        
-                .align_right {
-                    align-self: flex-end;
-                    margin-top: 5px;
-                    margin-right: 5px;
-        
-                }        
-        
                 .center {
                     display: flex;
                     justify-content: center;
                 }
         
-                .justify-text {
-                    text-align: justify;
-                    padding-left: 10px;
-                    padding-right: 10px;
                 }
-        
-                .smallGap {
-                    gap: 10px;
-                }
-        
-        
-                .row {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 5px;
-                    align-items: center;
-                }
-        
-                .smallButton {
-                    height: 20px;
-                    width: 20px;
-                    padding: 0;
-                    border-radius: 0;
-                    align-items: center;
-                    justify-content: center;
-                    margin-top: auto;
-                    margin-bottom: auto;
-        
-                    .mdc-button {
-                        min-width: 0;
-                    }
-        
-                }
-        
-                .marginAuto {
-                    margin: auto;
-                }  
-        
-                .lightGrey {
-                    color: rgb(143, 143, 143);
-                }
-        
-                .like {
-                    color: rgb(212, 125, 140);
-                }
-        
-                .yellow {
-                    color: rgb(255, 196, 0);
-                }
-        
-                .green {
-                    color: green;
-                }
-        
-                .red {
-                    color: red;
-                }
-        
-                .orange {
-                    color: orange;
-                }
-        
+               
                 mat-grid-tile {
                     background: lightblue;
                 }
@@ -130,9 +62,8 @@
                     width: 275px;
                     margin-right: auto;
                     margin-left: auto;
+                    margin-bottom: 15px;
                 }
-        
-            }
         }
     }
 }
