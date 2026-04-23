@@ -150,7 +150,7 @@ export class UserBasketService implements OnDestroy {
      * @returns a number
      */
     public getItemAmountInUserBasket(product_id: number) {
-        return this.http.get<userBasketAddDto>(`${environment.apiUrl}shop/basket${product_id}`);
+        return this.http.get<userBasketAddDto>(`${environment.apiUrl}shop/basket/${product_id}`);
     }
 
 }
