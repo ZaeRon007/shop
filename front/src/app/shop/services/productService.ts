@@ -4,7 +4,7 @@ import { productEntity } from "../../core/models/productEntity";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { UserBasketService } from "./userBasketService";
-import { ProductWithQuantity } from "../../core/models/ProductWithQuantity";
+import { ProductWithQuantity } from "../../core/models/dto/ProductWithQuantity";
 
 @Injectable({
     providedIn: 'root'
@@ -25,6 +25,15 @@ export class ProductService implements OnDestroy{
      */
     public getAllProducts(): Observable<productEntity[]> {
         return this.http.get<productEntity[]>(`${environment.apiUrl}products`);
+    }
+
+    /**
+     * This function allow to receive a product entity found by its number
+     * @param product number
+     * @returns 
+     */
+    public getProductById(product: number):Observable<productEntity> {
+        return this.http.get<productEntity>(`${environment.apiUrl}products/` + product);
     }
 
     /**
@@ -57,6 +66,21 @@ export class ProductService implements OnDestroy{
                     })
                 ))
         )
+    }
+
+    /**
+     * This function allow to init a product for single product component
+     */
+    public initProduct(number: number): Observable<ProductWithQuantity> {
+        return this.getProductById(number).pipe(
+            switchMap((product: productEntity) => 
+                this.basketService.getItemAmountInUserBasket(product.id).pipe(
+                    map(basket => ({
+                        ...product,
+                        quantityInBasket: basket.quantity,
+                    } as ProductWithQuantity))
+                )
+            ))
     }
 
     ngOnDestroy(): void {
