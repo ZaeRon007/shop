@@ -84,9 +84,11 @@ public class userBasketService {
      * @return : the product quantity as userBasketDto
      */
     public userBasketDto getAmountInUserBasket(String id) throws NumberFormatException, ParseException {
-        userBasketDto item = new userBasketDto();
-        item.setQuantity(userBasketRepository.findByProductIdAndUserId(Integer.parseInt(id), userService.getMe()).getQuantity());
-        return item;
+        userBasketEntity basketEntity = userBasketRepository.findByProductIdAndUserId(Integer.parseInt(id), userService.getMe());
+        if( basketEntity == null)
+            return new userBasketDto(0);
+        else
+            return new userBasketDto(basketEntity.getQuantity());
     }
 
     /**
