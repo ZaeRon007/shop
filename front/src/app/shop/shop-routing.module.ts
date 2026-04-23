@@ -6,6 +6,7 @@ import { WishComponent } from "./components/wish/wish.component";
 import { ContactComponent } from "./components/contact/contact.component";
 import { HomeComponent } from "./components/home/home.component";
 import { AccountComponent } from "./components/account/account.component";
+import { SingleProductComponent } from './components/single-product/single-product.component'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {animation: 'HomePage'} },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'basket', component: BasketComponent, data: {animation: 'basketPage'}},
   { path: 'wish', component: WishComponent, data: {animation: 'WishPage'}},
   { path: 'contact', component: ContactComponent, data: {animation: 'ContactPage'}},
-  { path: 'account', component: AccountComponent, data: {animation: 'AccountPage'}}
+  { path: 'account', component: AccountComponent, data: {animation: 'AccountPage'}},
+  { path: 'product/view/:id', component: SingleProductComponent, data: {animation: 'ProductsPage'}}
 
 ]
 
