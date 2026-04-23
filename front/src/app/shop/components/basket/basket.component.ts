@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserBasketService } from '../../services/userBasketService';
 import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
 import { productEntity } from '../../../core/models/productEntity';
-import { ProductWithQuantity } from '../../../core/models/ProductWithQuantity';
+import { ProductWithQuantity } from '../../../core/models/dto/ProductWithQuantity';
 import { userBasketEntity } from '../../../core/models/userBasketEntity';
 import { pictureSizeService } from '../../services/pictureSizeService';
 import { ProductService } from '../../services/productService';
