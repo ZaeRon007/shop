@@ -17,9 +17,9 @@ CREATE TABLE IF NOT EXISTS `products` (
   `category` VARCHAR(50),
   `price` INT,
   `quantity` INT,
-  `internal reference` VARCHAR(50),
-  `shellId` INT,
-  `inventoryStatus` VARCHAR(50),
+  `internal_reference` VARCHAR(50),
+  `shell_id` INT,
+  `inventory_status` VARCHAR(50),
   `rating` INT,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
